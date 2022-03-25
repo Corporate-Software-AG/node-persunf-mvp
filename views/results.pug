@@ -12,6 +12,7 @@ html
         section 
             div(class="container") 
                 h1= "Datenbank Einträge"
+                br
                 div 
                     each val in results
                         .row 
@@ -21,6 +22,8 @@ html
                                 p= val.description
                             .col-sm 
                                 p= val.mzr
+                            hr
+                    
 style. 
     .logo {
         text-align: right;
