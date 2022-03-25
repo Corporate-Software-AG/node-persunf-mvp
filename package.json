@@ -1,0 +1,29 @@
+{
+  "name": "persunf-mvp",
+  "version": "1.0.0",
+  "description": "MVP for new Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Corporate-Software-AG/node-persunf-mvp.git"
+  },
+  "author": "Thomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Corporate-Software-AG/node-persunf-mvp/issues"
+  },
+  "homepage": "https://github.com/Corporate-Software-AG/node-persunf-mvp#readme",
+  "dependencies": {
+    "@azure/cosmos": "^3.15.1",
+    "axios": "^0.24.0",
+    "azure-storage": "^2.10.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pug": "^3.0.2",
+    "qs": "^6.10.1",
+    "short-uuid": "^4.2.0"
+  }
+}
