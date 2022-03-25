@@ -11,12 +11,12 @@ html
             div(class="container") 
                 h1= "QR"
                 p(id="uuid")= uuid
-                a(href="http://127.0.0.1:8080/form/" + uuid) 
+                a(href="https://mvp-persunf.azurewebsites.net/form/" + uuid) 
                     div(id="qr")
         script(src='https://unpkg.com/qr-code-styling/lib/qr-code-styling.js')
 script.
   const uuid = document.getElementById("uuid").innerHTML
-  const url = "http://127.0.0.1:8080/form/" + uuid
+  const url = "https://mvp-persunf.azurewebsites.net/form/" + uuid
   const qrCode = new QRCodeStyling({
     width: 400,
     height: 400,
