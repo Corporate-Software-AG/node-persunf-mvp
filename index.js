@@ -34,7 +34,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/form/:id', (req, res) => {
-    const targetDevice = "TestCodespace";
+    const targetDevice = "TestPi";
     const methodParams = {
         methodName: 'onQrAcknowledged',
         payload: {"complete": true},
