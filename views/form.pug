@@ -17,18 +17,29 @@ html
                         label.form-label(for='form_id') ID:
                         input#form_id.form-control(type='text', name='form_id', value=id, disabled)
                     div.mb-3
-                        label.form-label(for='name') Name:
-                        input#name.form-control(type='text', placeholder='name' name='name')
+                        label.form-label(for='date') Datum:
+                        input#date.form-control(type='date', name='date')
                     div.mb-3
-                        label.form-label(for='desc') Text:
-                        input#desc.form-control(type='text', placeholder='description' name='desc')
+                        label.form-label(for='mzr') MZR:
+                        select#mzr.form-select(name='mzr')
+                            option(value='mzr1') MZR 01
+                            option(value='mzr2') MZR 02
+                            option(value='mzr3') MZR 03
+                            option(value='mzr4') MZR 04
                     div.mb-3
-                        label.form-label(for='select') MZR:
-                        select#select.form-select(name='select')
-                            option(value=mzr1) MZR 01
-                            option(value=mzr2) MZR 02
-                            option(value=mzr3) MZR 03
-                            option(value=mzr4) MZR 04
+                        label.form-label(for='kategorie') Kategorie:
+                        select#kategorie.form-select(name='kategorie', onchange='kategorySelected(this)')
+                            option(value='', disabled, selected) -- Wähle --
+                            option(value='unfall') Unfall
+                            option(value='krankheit') Krankheit
+                            option(value='psychisch') Psychische Belastung
+                    div.subform.subform-unfall
+                        include subforms/unfall.pug
+                    div.subform.subform-krankheit
+                        include subforms/krankheit.pug                    
+                    div.subform.subform-psychisch
+                        include subforms/psychisch.pug
+
                     button.btn.btn-danger(type="submit", value="OK") Submit
 
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js',integrity='sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p', crossorigin='anonymous') 
@@ -38,4 +49,17 @@ style.
     }
     img {
         max-width: 100%;
+    }
+    .subform,
+    .subform-unfall {
+        display: none;
+    }
+script.
+    (function() {
+        document.getElementById('date').valueAsDate = new Date();
+    })();
+
+    function kategorySelected(selectObject) {
+        document.querySelectorAll('.subform').forEach((element) => element.style.display = 'none');
+        document.querySelectorAll('.subform-' + selectObject.value).forEach((element) => element.style.display = 'block');
     }

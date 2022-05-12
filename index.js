@@ -19,8 +19,8 @@ const IotClient = require('azure-iothub').Client;
 
 const connectionString = process.env.IOTHUB_CONNECTION_STRING;
 if (!connectionString) {
-  console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
-  process.exit(-1);
+    console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
+    //process.exit(-1);
 }
 
 app.set("view engine", "pug");
@@ -34,21 +34,21 @@ app.get('/', (req, res) => {
 })
 
 app.get('/form/:id', (req, res) => {
-    const targetDevice = "TestPi";
+    /*const targetDevice = "TestCodespace";
     const methodParams = {
         methodName: 'onQrAcknowledged',
-        payload: {"complete": true},
+        payload: { "complete": true },
         responseTimeoutInSeconds: 15 // set response timeout as 15 seconds
     };
     let iotClient = IotClient.fromConnectionString(connectionString);
-    iotClient.invokeDeviceMethod(targetDevice, methodParams, function (err, result) {
+    iotClient.invokeDeviceMethod(targetDevice, methodParams, (err, result) => {
         if (err) {
             console.error('Failed to invoke method \'' + methodParams.methodName + '\': ' + err.message);
         } else {
             console.log(methodParams.methodName + ' on ' + targetDevice + ':');
             console.log(JSON.stringify(result, null, 2));
         }
-    });
+    });*/
     res.render("form", { title: "MVP Form", id: req.params.id });
 })
 
