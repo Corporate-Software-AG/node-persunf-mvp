@@ -36,10 +36,10 @@ app.get('/', (req, res) => {
     res.send('App up and running');
 })
 
-app.get('/form/:id', async (req, res) => {
+app.get('/form/:lang/:id', async (req, res) => {
     //setUpIoT();
     console.log("FORM with " + req.params.id)
-    let languageData = await getLanguageData("de");
+    let languageData = await getLanguageData(req.params.lang);
     res.render("form", { title: "Formular", id: req.params.id, languageData: languageData });
 })
 
