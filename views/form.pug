@@ -12,6 +12,7 @@ html
         section 
             .container
                 h1= "Form"
+                p= languageData.language
                 form(method='POST' action='/submit_form')
                     div.mb-3
                         label.form-label(for='form_id') ID:
@@ -22,10 +23,8 @@ html
                     div.mb-3
                         label.form-label(for='mzr') MZR:
                         select#mzr.form-select(name='mzr')
-                            option(value='mzr1') MZR 01
-                            option(value='mzr2') MZR 02
-                            option(value='mzr3') MZR 03
-                            option(value='mzr4') MZR 04
+                            each val in languageData.locations
+                                option(value=val.id) #{val.name} 
                     div.mb-3
                         label.form-label(for='kategorie') Kategorie:
                         select#kategorie.form-select(name='kategorie', onchange='kategorySelected(this)')

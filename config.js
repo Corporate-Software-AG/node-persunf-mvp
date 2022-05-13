@@ -5,5 +5,4 @@ const config = {
     containerId: "items",
     partitionKey: { kind: "Hash", paths: ["/id"] }
 };
-
 module.exports = config;

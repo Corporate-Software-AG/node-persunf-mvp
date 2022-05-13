@@ -8,19 +8,22 @@ const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
 const dbContext = require("./data/databaseContext");
 
-const { endpoint, key, databaseId, containerId } = config;
-
+const { endpoint, key, databaseId } = config;
 const client = new CosmosClient({ endpoint, key });
-
 const database = client.database(databaseId);
-const container = database.container(containerId);
 
 const IotClient = require('azure-iothub').Client;
 
-const connectionString = process.env.IOTHUB_CONNECTION_STRING;
-if (!connectionString) {
+const iotConnectionString = process.env.IOTHUB_CONNECTION_STRING;
+if (!iotConnectionString) {
     console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
     //process.exit(-1);
+}
+
+const dbConnectionString = process.env.DB_KEY;
+if (!dbConnectionString) {
+    console.log('Please set the DB_KEY environment variable.');
+    process.exit(-1);
 }
 
 app.set("view engine", "pug");
@@ -33,48 +36,24 @@ app.get('/', (req, res) => {
     res.send('App up and running');
 })
 
-app.get('/form/:id', (req, res) => {
-    /*const targetDevice = "TestCodespace";
-    const methodParams = {
-        methodName: 'onQrAcknowledged',
-        payload: { "complete": true },
-        responseTimeoutInSeconds: 15 // set response timeout as 15 seconds
-    };
-    let iotClient = IotClient.fromConnectionString(connectionString);
-    iotClient.invokeDeviceMethod(targetDevice, methodParams, (err, result) => {
-        if (err) {
-            console.error('Failed to invoke method \'' + methodParams.methodName + '\': ' + err.message);
-        } else {
-            console.log(methodParams.methodName + ' on ' + targetDevice + ':');
-            console.log(JSON.stringify(result, null, 2));
-        }
-    });*/
-    res.render("form", { title: "MVP Form", id: req.params.id });
+app.get('/form/:id', async (req, res) => {
+    //setUpIoT();
+    console.log("FORM with " + req.params.id)
+    let languageData = await getLanguageData("de");
+    res.render("form", { title: "Formular", id: req.params.id, languageData: languageData });
 })
 
 app.post('/submit_form', async (req, res) => {
     console.log("FORM POST")
-    await dbContext.create(client, databaseId, containerId);
-
-
-    const newItem = {
-        id: short.generate(),
-        name: req.body.name,
-        description: req.body.desc,
-        mzr: req.body.select
-    };
-
-    const { resource: createdItem } = await container.items.create(newItem);
-
-    console.log(`\r\nCreated new item: ${createdItem.id} - ${createdItem.description}\r\n`);
-
-
+    let queryResponse = await submitForm(req)
     res.render('finish',
-        { msg: "Your feedback successfully saved." });
+        { msg: queryResponse });
 })
 
 app.get('/results', async (req, res) => {
-    console.log(`Querying container: Items`);
+    console.log(`Querying container: healthevents`);
+    const containerId = "coredata"
+    const container = database.container(containerId);
     await dbContext.create(client, databaseId, containerId);
 
     // query to return all items
@@ -88,7 +67,7 @@ app.get('/results', async (req, res) => {
         .fetchAll();
 
     items.forEach(item => {
-        console.log(`${item.id} - ${item.name}`);
+        console.log(`${item.id}`);
     });
 
     res.render("results", { title: "MVP Data", results: items });
@@ -98,3 +77,57 @@ app.listen(port, () => {
     console.log(`This app is listening at http://localhost:${port}`)
 })
 
+function setUpIoT() {
+    const targetDevice = "TestCodespace";
+    const methodParams = {
+        methodName: 'onQrAcknowledged',
+        payload: { "complete": true },
+        responseTimeoutInSeconds: 15 // set response timeout as 15 seconds
+    };
+    let iotClient = IotClient.fromConnectionString(connectionString);
+    iotClient.invokeDeviceMethod(targetDevice, methodParams, (err, result) => {
+        if (err) {
+            console.error('Failed to invoke method \'' + methodParams.methodName + '\': ' + err.message);
+        } else {
+            console.log(methodParams.methodName + ' on ' + targetDevice + ':');
+            console.log(JSON.stringify(result, null, 2));
+        }
+    });
+}
+
+async function getLanguageData(code) {
+    console.log(`Querying container: coredata`);
+    const containerId = "coredata"
+    const container = database.container(containerId);
+    await dbContext.create(client, databaseId, containerId);
+
+    // query to return all items
+    const querySpec = {
+        query: "SELECT * from c WHERE c.id = '" + code + "'"
+    };
+
+    // read all items in the Items container
+    const { resources: items } = await container.items
+        .query(querySpec).fetchNext();
+
+    return items[0];
+}
+
+async function submitForm(req) {
+    const containerId = "healthevents"
+    const container = database.container(containerId);
+    await dbContext.create(client, databaseId, containerId);
+
+    const newItem = {
+        id: short.generate(),
+        name: req.body.name,
+        description: req.body.desc,
+        mzr: req.body.select
+    };
+
+    const { resource: createdItem } = await container.items.create(newItem);
+
+    console.log(`\r\nCreated new item: ${createdItem.id} - ${createdItem.description}\r\n`);
+
+    return "Your feedback successfully saved."
+}
