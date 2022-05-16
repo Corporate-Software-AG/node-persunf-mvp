@@ -29,14 +29,15 @@ html
                             each val in languageData.mzrlocations.items
                                 option(value=val.id) #{val.name} 
                     div.mb-3
-                        label.form-label(for='birthyear') Jahrgang
+                        label.form-label(for='birthyear') #{languageData.birthyear.name}
                         select#birthyear.form-select(name='birthyear')
-                            - var n = 2023;
+                            - var n = 2022;
                             while n >= 1900
-                                option(value=n) #{n--} 
+                                option(value=n) #{n}
+                                - n--; 
                     div.mb-3
-                        label.form-label(for='kategorie') #{languageData.categories.name}:
-                        select#kategorie.form-select(name='kategorie', onchange='kategorySelected(this)')
+                        label.form-label(for='category') #{languageData.categories.name}:
+                        select#category.form-select(name='category', onchange='categorySelected(this)')
                             option(value='', disabled, selected) #{languageData.labels.select}
                             each val in languageData.categories.items
                                 option(value=val.id) #{val.name}
@@ -66,7 +67,7 @@ script.
         document.getElementById('date').valueAsDate = new Date();
     })();
 
-    function kategorySelected(selectObject) {
+    function categorySelected(selectObject) {
         document.querySelectorAll('.subform').forEach((element) => element.style.display = 'none');
         document.querySelectorAll('.subform-' + selectObject.value).forEach((element) => element.style.display = 'block');
     }
