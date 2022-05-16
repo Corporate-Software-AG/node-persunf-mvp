@@ -1,0 +1,5 @@
+div.mb-3
+    label.form-label(for='mainreason') #{languageData.mainreason.name}:
+    select#mainreason.form-select(name='mainreason', multiple)
+        each val in languageData.mainreason.items
+            option(value=val.id) #{val.name}

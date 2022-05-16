@@ -1,0 +1,36 @@
+div.mb-3
+    label.form-label(for='form_id') ID:
+    input#form_id.form-control(type='text', name='form_id', value=id, disabled)
+div.mb-3
+    label.form-label(for='date') #{languageData.dateofincident.name}:
+    input#date.form-control(type='date', name='date')
+div.mb-3
+    label.form-label(for='time') #{languageData.timeofincident.name}:
+    input#time.form-control(type='time', name='time')
+div.mb-3
+    label.form-label(for='birthyear') #{languageData.birthyear.name}:
+    select#birthyear.form-select(name='birthyear')
+        - var n = 2022;
+        while n >= 1900
+            option(value=n) #{n}
+            - n--; 
+div.mb-3
+    label.form-label(for='mzr') #{languageData.mzrlocations.name}:
+    select#mzr.form-select(name='mzr')
+        each val in languageData.mzrlocations.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
+    select#trooplocations.form-select(name='trooplocations')
+        each val in languageData.trooplocations.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='servicetype') #{languageData.servicetype.name}:
+    select#servicetype.form-select(name='servicetype')
+        each val in languageData.servicetype.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='branches_of_service_and_special_badges') #{languageData.branches_of_service_and_special_badges.name}:
+    select#branches_of_service_and_special_badges.form-select(name='branches_of_service_and_special_badges')
+        each val in languageData.branches_of_service_and_special_badges.items
+            option(value=val.id) #{val.name} 

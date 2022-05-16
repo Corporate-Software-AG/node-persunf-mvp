@@ -1,3 +1,6 @@
 div.mb-3
-    label.form-label(for='krankheit') Krankheit:
-    input#krankheit.form-control(type='text', placeholder='eine Krankheit' name='krankheit')
+    label.form-label(for='typeofillness') #{languageData.typeofillness.name}:
+    select#typeofillness.form-select(name='typeofillness', multiple)
+        each val in languageData.typeofillness.items
+            option(value=val.id) #{val.name}
+include common-end.pug

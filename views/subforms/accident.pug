@@ -1,11 +1,46 @@
 div.mb-3
-    label.form-label(for='ereignisort') Ereignisort:
-    input#ereignisort.form-control(type='text', placeholder='Ereignisort' name='ereignisort')
-div.mb-3
-    label.form-label(for='bodyparts') Körperteil:
-    select#bodyparts.form-select(name='bodyparts', multiple)
-        each val in languageData.bodyparts
+    label.form-label(for='incidentlocation') #{languageData.incidentlocation.name}:
+    select#bodypincidentlocationarts.form-select(name='incidentlocation')
+        each val in languageData.incidentlocation.items
             option(value=val.id) #{val.name} 
 div.mb-3
-    label.form-label(for='koerperseite') Körperseite:
-    input#koerperseite.form-control(type='text', placeholder='Seite' name='koerperseite')
+    label.form-label(for='bodyparts') #{languageData.bodyparts.name}:
+    select#bodyparts.form-select(name='bodyparts', multiple)
+        each val in languageData.bodyparts.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='bodyside') #{languageData.bodyside.name}:
+    select#bodyside.form-select(name='bodyside', multiple)
+        each val in languageData.bodyside.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='accidentduring') #{languageData.accidentduring.name}:
+    select#accidentduring.form-select(name='accidentduring', multiple)
+        each val in languageData.accidentduring.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='weather') #{languageData.weather.name}:
+    select#weather.form-select(name='weather', multiple)
+        each val in languageData.weather.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='ground') #{languageData.ground.name}:
+    select#ground.form-select(name='ground', multiple)
+        each val in languageData.ground.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='groundtype') #{languageData.groundtype.name}:
+    select#groundtype.form-select(name='groundtype', multiple)
+        each val in languageData.groundtype.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='typeofaccident') #{languageData.typeofaccident.name}:
+    select#typeofaccident.form-select(name='typeofaccident', multiple)
+        each val in languageData.typeofaccident.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='typeofinjury') #{languageData.typeofinjury.name}:
+    select#typeofinjury.form-select(name='typeofinjury', multiple)
+        each val in languageData.typeofinjury.items
+            option(value=val.id) #{val.name} 
+include common-end.pug

@@ -1,0 +1,489 @@
+{
+    "id": "de",
+    "language": "deutsch",
+    "labels": {
+        "title": "Formular",
+        "select": "--- Wählen ---",
+        "consult_doctor": "Mit dem Arzt ausfüllen",
+        "submit": "Einreichen"
+    },
+    "dateofincident": {
+        "name": "Datum des Ereignisses"
+    },
+    "timeofincident": {
+        "name": "Zeit des Ereignisses"
+    },
+    "birthyear": {
+        "name": "Jahrgang"
+    },
+    "categories": {
+        "name": "Kategorien",
+        "items": [
+            {
+                "id": "accident",
+                "name": "Unfall"
+            },
+            {
+                "id": "illness",
+                "name": "Krankheit"
+            },
+            {
+                "id": "mental_stress",
+                "name": "Psychische Belastung"
+            }
+        ]
+    },
+    "mzrlocations": {
+        "name": "MZR / Ambulatorien",
+        "items": [
+            {
+                "id": "mzr_wa",
+                "name": "MZR Wangen an der Aare"
+            },
+            {
+                "id": "mzr_thun",
+                "name": "MZR Thun"
+            }
+        ]
+    },
+    "trooplocations": {
+        "name": "Truppenstandorte",
+        "items": [
+            {
+                "id": "ka",
+                "name": "Kaserne Aarau"
+            },
+            {
+                "id": "kb",
+                "name": "Kaserne Bern"
+            },
+            {
+                "id": "kp",
+                "name": "Kaserne Payern"
+            }
+        ]
+    },
+    "servicetype": {
+        "name": "Dienstart",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "aga_fga",
+                "name": "AGA/FGA"
+            },
+            {
+                "id": "vba",
+                "name": "VBA"
+            },
+            {
+                "id": "uos",
+                "name": "UOS"
+            },
+            {
+                "id": "os",
+                "name": "OS"
+            },
+            {
+                "id": "wk",
+                "name": "WK"
+            },
+            {
+                "id": "professional_military",
+                "name": "Berufsmilitär"
+            },
+            {
+                "id": "third_parties",
+                "name": "Einsatz zu Gunsten"
+            },
+            {
+                "id": "else",
+                "name": "Andere"
+            }
+        ]
+    },
+    "incidentlocation": {
+        "name": "Ereignisort",
+        "items": [
+            {
+                "id": "someplace",
+                "name": "Ein Ort"
+            },
+            {
+                "id": "someotherplace",
+                "name": "Ein anderer Ort"
+            }
+        ]
+    },
+    "bodyparts": {
+        "name": "Körperteile",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "eye",
+                "name": "Auge"
+            },
+            {
+                "id": "pelvis",
+                "name": "Becken / Genitalien"
+            },
+            {
+                "id": "thorax",
+                "name": "Brustkorb"
+            },
+            {
+                "id": "ellbow",
+                "name": "Ellenbogen"
+            },
+            {
+                "id": "foot",
+                "name": "Fuss / Zehen"
+            },
+            {
+                "id": "ankle",
+                "name": "Fussgelenk / Sprunggelenk"
+            },
+            {
+                "id": "hole_body",
+                "name": "Ganzer Körper"
+            },
+            {
+                "id": "neck",
+                "name": "Hals / Nacken"
+            },
+            {
+                "id": "hand",
+                "name": "Hand / Finger"
+            },
+            {
+                "id": "wrist",
+                "name": "Handgelenk"
+            },
+            {
+                "id": "hip",
+                "name": "Hüfte"
+            },
+            {
+                "id": "inner_organs",
+                "name": "Innere Organe"
+            },
+            {
+                "id": "jaw",
+                "name": "Kiefer"
+            },
+            {
+                "id": "knee",
+                "name": "Knie"
+            },
+            {
+                "id": "mouth",
+                "name": "Mund"
+            },
+            {
+                "id": "nose",
+                "name": "Nase"
+            },
+            {
+                "id": "upper_arm",
+                "name": "Oberarm"
+            },
+            {
+                "id": "thigh",
+                "name": "Oberschenkel"
+            },
+            {
+                "id": "ear",
+                "name": "Ohr"
+            },
+            {
+                "id": "back",
+                "name": "Rücken / Wirbelsäule"
+            },
+            {
+                "id": "skull",
+                "name": "Schädel / Gehirn"
+            },
+            {
+                "id": "shoulder",
+                "name": "Schulter / Schlüsselbein"
+            },
+            {
+                "id": "forearm",
+                "name": "Unterarm"
+            },
+            {
+                "id": "lower_leg",
+                "name": "Unterschenkel"
+            },
+            {
+                "id": "tooth",
+                "name": "Zahn"
+            },
+            {
+                "id": "else",
+                "name": "Andere"
+            }
+        ]
+    },
+    "branches_of_service_and_special_badges": {
+        "name": "Truppengattungen / Dienstzweige / Besondere Abzeichen ",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "inf",
+                "name": "Infanterie"
+            },
+            {
+                "id": "pztrp",
+                "name": "Panzertruppen"
+            },
+            {
+                "id": "arti",
+                "name": "Artillerie"
+            },
+            {
+                "id": "airforce",
+                "name": "Fliegertruppen"
+            },
+            {
+                "id": "antiaircrafttroops",
+                "name": "Fliegerabwehrtruppen"
+            },
+            {
+                "id": "engineercorps",
+                "name": "Genietruppe"
+            },
+            {
+                "id": "commandsupporttroops",
+                "name": "Führungsunterstützungstruppen"
+            }
+        ]
+    },
+    "bodyside": {
+        "name": "Körperseite",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "right",
+                "name": "Rechts"
+            },
+            {
+                "id": "left",
+                "name": "Links"
+            }
+        ]
+    },
+    "accidentduring": {
+        "name": "Unfall während ...",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "goout",
+                "name": "Ausgang"
+            },
+            {
+                "id": "service_operation",
+                "name": "Denstbetrieb"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "weather": {
+        "name": "Witterungsverhältnisse",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "cloudy",
+                "name": "Bewölkt"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "ground": {
+        "name": "Untergrund",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "wet",
+                "name": "Nass"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "groundtype": {
+        "name": "Bodenart",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "house",
+                "name": "Gebäudeinneres"
+            },
+            {
+                "id": "terrain",
+                "name": "Gelände"
+            },
+            {
+                "id": "hard_court",
+                "name": "Hartplatz"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "typeofaccident": {
+        "name": "Unfall",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "collision_with_person",
+                "name": "Aufprall / Zusammenstoss: mit Person"
+            },
+            {
+                "id": "collision_with_object",
+                "name": "Aufprall / Zusammenstoss: mit Objekt"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "typeofinjury": {
+        "name": "Verletzungsart",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "asthma",
+                "name": "Atembeschwerden / Asthma"
+            },
+            {
+                "id": "blisters",
+                "name": "Blasen / Hautblasen"
+            },
+            {
+                "id": "fracture",
+                "name": "Bruch / Fraktur"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "typeofillness": {
+        "name": "Krankheit",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "flu",
+                "name": "Grippe / Erkältung"
+            },
+            {
+                "id": "infection",
+                "name": "Infektion"
+            },
+            {
+                "id": "pandemic",
+                "name": "Pandemie"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "typeofmentalstress": {
+        "name": "Psychische Belastung",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "peer_pressure",
+                "name": "Gruppendruck"
+            },
+            {
+                "id": "mobbing",
+                "name": "Mobbing"
+            },
+            {
+                "id": "private",
+                "name": "Privat"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "mainreason": {
+        "name": "Hauptursache",
+        "items": [
+            {
+                "id": "all",
+                "name": "Alle"
+            },
+            {
+                "id": "alcohol",
+                "name": "Alkohol"
+            },
+            {
+                "id": "drugs",
+                "name": "Drogen"
+            },
+            {
+                "id": "other",
+                "name": "Andere"
+            }
+        ]
+    },
+    "_rid": "hK1xAOHEsW4DAAAAAAAAAA==",
+    "_self": "dbs/hK1xAA==/colls/hK1xAOHEsW4=/docs/hK1xAOHEsW4DAAAAAAAAAA==/",
+    "_etag": "\"ab02bf3d-0000-1600-0000-6282bdce0000\"",
+    "_attachments": "attachments/",
+    "_ts": 1652735438
+}
