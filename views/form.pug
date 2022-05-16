@@ -18,26 +18,28 @@ html
                         label.form-label(for='form_id') ID:
                         input#form_id.form-control(type='text', name='form_id', value=id, disabled)
                     div.mb-3
-                        label.form-label(for='date') Datum:
+                        label.form-label(for='date') #{languageData.dateofincident.name} :
                         input#date.form-control(type='date', name='date')
                     div.mb-3
-                        label.form-label(for='mzr') MZR:
+                        label.form-label(for='time') #{languageData.timeofincident.name} :
+                        input#time.form-control(type='time', name='time')
+                    div.mb-3
+                        label.form-label(for='mzr') #{languageData.mzrlocations.name} 
                         select#mzr.form-select(name='mzr')
-                            each val in languageData.locations
+                            each val in languageData.mzrlocations.items
                                 option(value=val.id) #{val.name} 
                     div.mb-3
-                        label.form-label(for='kategorie') Kategorie:
+                        label.form-label(for='kategorie') #{languageData.categories.name}:
                         select#kategorie.form-select(name='kategorie', onchange='kategorySelected(this)')
                             option(value='', disabled, selected) -- Wähle --
-                            option(value='unfall') Unfall
-                            option(value='krankheit') Krankheit
-                            option(value='psychisch') Psychische Belastung
-                    div.subform.subform-unfall
-                        include subforms/unfall.pug
-                    div.subform.subform-krankheit
-                        include subforms/krankheit.pug                    
-                    div.subform.subform-psychisch
-                        include subforms/psychisch.pug
+                            each val in languageData.categories.items
+                                option(value=val.id) #{val.name}
+                    div.subform.subform-accident
+                        include subforms/accident.pug
+                    div.subform.subform-illnes
+                        include subforms/illness.pug                    
+                    div.subform.subform-mental
+                        include subforms/mentally.pug
 
                     button.btn.btn-danger(type="submit", value="OK") Submit
 
