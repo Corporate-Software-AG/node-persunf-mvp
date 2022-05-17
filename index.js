@@ -37,8 +37,11 @@ app.get('/', (req, res) => {
 })
 
 app.get('/form/:lang/:id', async (req, res) => {
-    //setUpIoT();
     console.log("FORM with " + req.params.id)
+    if (req.query.deviceId) {
+        console.log("Form from " + req.query.deviceId)
+        setUpIoT(deviceId);
+    }
     let languageData = await getLanguageData(req.params.lang);
     res.render("form", { title: "Formular", id: req.params.id, languageData: languageData });
 })
@@ -77,14 +80,13 @@ app.listen(port, () => {
     console.log(`This app is listening at http://localhost:${port}`)
 })
 
-function setUpIoT() {
-    const targetDevice = "TestCodespace";
+function setUpIoT(targetDevice) {
     const methodParams = {
         methodName: 'onQrAcknowledged',
         payload: { "complete": true },
         responseTimeoutInSeconds: 15 // set response timeout as 15 seconds
     };
-    let iotClient = IotClient.fromConnectionString(connectionString);
+    let iotClient = IotClient.fromConnectionString(iotConnectionString);
     iotClient.invokeDeviceMethod(targetDevice, methodParams, (err, result) => {
         if (err) {
             console.error('Failed to invoke method \'' + methodParams.methodName + '\': ' + err.message);
