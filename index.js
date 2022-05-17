@@ -118,12 +118,7 @@ async function submitForm(req) {
     const container = database.container(containerId);
     await dbContext.create(client, databaseId, containerId);
 
-    const newItem = {
-        id: short.generate(),
-        name: req.body.name,
-        description: req.body.desc,
-        mzr: req.body.select
-    };
+    const newItem = req.body;
 
     const { resource: createdItem } = await container.items.create(newItem);
 
