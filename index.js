@@ -17,7 +17,7 @@ const IotClient = require('azure-iothub').Client;
 const iotConnectionString = process.env.IOTHUB_CONNECTION_STRING;
 if (!iotConnectionString) {
     console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
-    //process.exit(-1);
+    process.exit(-1);
 }
 
 const dbConnectionString = process.env.DB_KEY;
@@ -32,13 +32,24 @@ app.use('/favicon.ico', express.static('favicon.ico'));
 
 app.use(express.urlencoded());
 
-app.get('/',async (req, res) => {
-    console.log(req.query.language)
-    if(req.query.language){
+app.get('/', async (req, res) => {
+    let language = req.query.language;
+    let deviceId = req.query.deviceId;
+    let deviceLocation = req.query.deviceLocation;
+    let verificationCode = req.query.verificationCode;
+
+    if (!deviceId) {
+        res.render("error", { title: "Error", message: "invalid Device ID" });
+    } else if (!deviceLocation) {
+        res.render("error", { title: "Error", message: "invalid Device Location" });
+    } else if (!verificationCode) {
+        res.render("error", { title: "Error", message: "invalid verification code" });
+    } else if (!language) {
+        res.render("home", { title: "Home" });
+    } else {
         let languageData = await getLanguageData(req.query.language);
         res.render("form", { title: "Formular", id: req.query.verificationCode, languageData: languageData });
     }
-    res.render("home", { title: "Home"});
 })
 
 app.post('/submit_form', async (req, res) => {
@@ -46,29 +57,6 @@ app.post('/submit_form', async (req, res) => {
     let queryResponse = await submitForm(req)
     res.render('finish',
         { msg: queryResponse });
-})
-
-app.get('/results', async (req, res) => {
-    console.log(`Querying container: healthevents`);
-    const containerId = "coredata"
-    const container = database.container(containerId);
-    await dbContext.create(client, databaseId, containerId);
-
-    // query to return all items
-    const querySpec = {
-        query: "SELECT * from c"
-    };
-
-    // read all items in the Items container
-    const { resources: items } = await container.items
-        .query(querySpec)
-        .fetchAll();
-
-    items.forEach(item => {
-        console.log(`${item.id}`);
-    });
-
-    res.render("results", { title: "MVP Data", results: items });
 })
 
 app.listen(port, () => {
