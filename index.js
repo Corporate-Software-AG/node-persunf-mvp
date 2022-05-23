@@ -17,7 +17,7 @@ const IotClient = require('azure-iothub').Client;
 const iotConnectionString = process.env.IOTHUB_CONNECTION_STRING;
 if (!iotConnectionString) {
     console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
-    process.exit(-1);
+    //process.exit(-1);
 }
 
 const dbConnectionString = process.env.DB_KEY;
@@ -32,18 +32,13 @@ app.use('/favicon.ico', express.static('favicon.ico'));
 
 app.use(express.urlencoded());
 
-app.get('/', (req, res) => {
-    res.send('App up and running');
-})
-
-app.get('/form/:lang/:id', async (req, res) => {
-    console.log("FORM with " + req.params.id)
-    if (req.query.deviceId) {
-        console.log("Form from " + req.query.deviceId)
-        setUpIoT(req.query.deviceId);
+app.get('/',async (req, res) => {
+    console.log(req.query.language)
+    if(req.query.language){
+        let languageData = await getLanguageData(req.query.language);
+        res.render("form", { title: "Formular", id: req.query.verificationCode, languageData: languageData });
     }
-    let languageData = await getLanguageData(req.params.lang);
-    res.render("form", { title: "Formular", id: req.params.id, languageData: languageData });
+    res.render("home", { title: "Home"});
 })
 
 app.post('/submit_form', async (req, res) => {
