@@ -1,7 +1,8 @@
+ 
 div.mb-3
-    label.form-label(for='incidentlocation') #{languageData.incidentlocation.name}:
-    select#bodypincidentlocationarts.form-select(name='incidentlocation')
-        each val in languageData.incidentlocation.items
+    label.form-label(for='accidentlocation') #{languageData.accidentlocation.name}:
+    select#accidentlocation.form-select(name='accidentlocation')
+        each val in languageData.accidentlocation.items
             option(value=val.id) #{val.name} 
 div.mb-3
     label.form-label(for='bodyparts') #{languageData.bodyparts.name}:
