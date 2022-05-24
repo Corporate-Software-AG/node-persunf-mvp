@@ -15,9 +15,10 @@ div.mb-3
             option(value=n) #{n}
             - n--; 
 div.mb-3
-    label.form-label(for='mzr') #{languageData.mzrlocations.name}:
-    select#mzr.form-select(name='mzr', readonly)
-        option(value = deviceLocation) #{languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name}
+    label.form-label(for='mzrname') #{languageData.mzrlocations.name}:
+    input#mzrname.form-control(type='text' name='mzrname' value=languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name, disabled)
+    input#mzr.form-control(type='text' name='mzr' value=deviceLocation, hidden)
+
 div.mb-3
     label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
     select#trooplocations.form-select(name='trooplocations')
