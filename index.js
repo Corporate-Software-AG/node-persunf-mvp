@@ -17,7 +17,7 @@ const IotClient = require('azure-iothub').Client;
 const iotConnectionString = process.env.IOTHUB_CONNECTION_STRING;
 if (!iotConnectionString) {
     console.log('Please set the IOTHUB_CONNECTION_STRING environment variable.');
-    process.exit(-1);
+    //process.exit(-1);
 }
 
 const dbConnectionString = process.env.DB_KEY;

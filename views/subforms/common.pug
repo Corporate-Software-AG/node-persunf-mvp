@@ -1,6 +1,6 @@
 div.mb-3
     label.form-label(for='form_id') ID:
-    input#form_id.form-control(type='text', name='form_id', value=id, disabled)
+    input#form_id.form-control(type='text', name='form_id', value=id, readonly)
 div.mb-3
     label.form-label(for='date') #{languageData.dateofincident.name}:
     input#date.form-control(type='date', name='date')
@@ -16,7 +16,7 @@ div.mb-3
             - n--; 
 div.mb-3
     label.form-label(for='mzr') #{languageData.mzrlocations.name}:
-    select#mzr.form-select(name='mzr')
+    select#mzr.form-select(name='mzr', readonly)
         option(value = deviceLocation) #{languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name}
 div.mb-3
     label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
@@ -38,8 +38,3 @@ div.mb-3
     select#bodypincidentlocationarts.form-select(name='incidentlocation')
         each val in languageData.incidentlocation.items
             option(value=val.id) #{val.name}
-
-script.
-    (function() {
-        document.getElementById("mzr").disabled = true;
-    })();
