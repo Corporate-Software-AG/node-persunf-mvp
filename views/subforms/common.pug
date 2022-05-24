@@ -17,8 +17,7 @@ div.mb-3
 div.mb-3
     label.form-label(for='mzr') #{languageData.mzrlocations.name}:
     select#mzr.form-select(name='mzr')
-        each val in languageData.mzrlocations.items
-            option(value=val.id) #{val.name} 
+        option(value = deviceLocation) #{languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name}
 div.mb-3
     label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
     select#trooplocations.form-select(name='trooplocations')
@@ -39,3 +38,8 @@ div.mb-3
     select#bodypincidentlocationarts.form-select(name='incidentlocation')
         each val in languageData.incidentlocation.items
             option(value=val.id) #{val.name}
+
+script.
+    (function() {
+        document.getElementById("mzr").disabled = true;
+    })();
