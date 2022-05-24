@@ -40,15 +40,18 @@ app.get('/', async (req, res) => {
 
     if (!deviceId) {
         res.render("error", { title: "Error", message: "invalid Device ID" });
-    } else if (!deviceLocation) {
-        res.render("error", { title: "Error", message: "invalid Device Location" });
     } else if (!verificationCode) {
         res.render("error", { title: "Error", message: "invalid verification code" });
     } else if (!language) {
         res.render("home", { title: "Home" });
     } else {
         let languageData = await getLanguageData(req.query.language);
-        res.render("form", { title: "Formular", id: req.query.verificationCode, languageData: languageData });
+        const locationExists = (e) => e.id === deviceLocation;
+        if (!languageData.mzrlocations.items.some(locationExists)) {
+            res.render("error", { title: "Error", message: "invalid Device Location" });
+        } else {
+            res.render("form", { title: "Formular", id: req.query.verificationCode, languageData: languageData, deviceLocation: deviceLocation });
+        }
     }
 })
 

@@ -13,7 +13,7 @@ html
             .container
                 h1= languageData.labels.title
                 p= languageData.language
-                form(method='POST' action='/submit_form')
+                form(id='form' method='POST' action='/submit_form')
                     include subforms/common.pug
                     hr
                     p
