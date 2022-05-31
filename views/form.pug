@@ -55,3 +55,24 @@ script.
         document.querySelectorAll('.subform').forEach((element) => element.style.display = 'none');
         document.querySelectorAll('.subform-' + selectObject.value).forEach((element) => element.style.display = 'block');
     }
+
+    window.onbeforeunload = function() {
+        let data = {}
+        document.querySelectorAll("input").forEach((input) => data[input.id] = input.value);
+        document.querySelectorAll("select").forEach((select) => data[select.id] = select.value);
+        localStorage.setItem(document.getElementById('form_id').value, JSON.stringify(data));
+        
+    }
+    
+    window.onload = function () {
+        let form_id = document.getElementById('form_id').value;
+        if (localStorage.getItem(form_id) != null) {
+            restored = JSON.parse(localStorage.getItem(form_id));
+            console.log(restored)
+            for(var property in restored) {
+                console.log(property)
+                document.getElementById(property).value = restored[property];
+            }
+            categorySelected(document.getElementById('category'))
+        }
+    }
