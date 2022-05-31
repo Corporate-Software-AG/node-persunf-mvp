@@ -68,9 +68,7 @@ script.
         let form_id = document.getElementById('form_id').value;
         if (localStorage.getItem(form_id) != null) {
             restored = JSON.parse(localStorage.getItem(form_id));
-            console.log(restored)
             for(var property in restored) {
-                console.log(property)
                 document.getElementById(property).value = restored[property];
             }
             categorySelected(document.getElementById('category'))
