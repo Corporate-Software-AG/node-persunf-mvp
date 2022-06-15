@@ -1,44 +1,44 @@
 {
-    "id": "de",
-    "language": "deutsch",
+    "id": "it",
+    "language": "Italiano",
     "labels": {
-        "title": "Formular",
-        "select": "--- Wählen ---",
-        "consult_doctor": "Mit dem medizinischen Personal ausfüllen",
-        "submit": "Einreichen"
+        "title": "Modulo",
+        "select": "--- selezionare ---",
+        "submit": "Sottoscrivi",
+        "consult_doctor": "Compilare con il personale medico"
     },
     "dateofincident": {
-        "name": "Datum Ereignis"
+        "name": "Data dell’evento"
     },
     "timeofincident": {
-        "name": "Uhrzeit"
+        "name": "Ora"
     },
     "birthyear": {
-        "name": "Jahrgang"
+        "name": "Anno"
     },
     "categories": {
-        "name": "Kategorien",
+        "name": "Categoria",
         "items": [
             {
                 "id": "accident",
-                "name": "Unfall"
+                "name": "infortunio"
             },
             {
                 "id": "illness",
-                "name": "Krankheit"
+                "name": "malattia"
             },
             {
                 "id": "mental_stress",
-                "name": "Psychische Belastung"
+                "name": "stress psichico"
             }
         ]
     },
     "mzrlocations": {
-        "name": "MZR / Ambulatorium",
+        "name": "CMR / Ambulatorio",
         "items": [
             {
                 "id": "mzr_wa",
-                "name": "MZR Wangen an der Aare",
+                "name": "CMR Wangen an der Aare",
                 "latitude": "47.237076626107815",
                 "longitude": "7.6637893074133006",
                 "city": "Wangen an der Aare",
@@ -46,7 +46,7 @@
             },
             {
                 "id": "mzr_thun",
-                "name": "MZR Thun",
+                "name": "CMR Thun",
                 "latitude": "46.759434569317044",
                 "longitude": "7.618046037036326",
                 "city": "Thun",
@@ -79,7 +79,7 @@
         ]
     },
     "trooplocations": {
-        "name": "Truppenstandort / Kommando",
+        "name": "Ubicazione della truppa Comando",
         "items": [
             {
                 "id": "ka",
@@ -96,289 +96,289 @@
         ]
     },
     "servicetype": {
-        "name": "Dienstart",
+        "name": "Genere di servizio",
         "items": [
             {
                 "id": "aga_fga",
-                "name": "AGA/FGA"
+                "name": "IBG/IBF"
             },
             {
                 "id": "vba",
-                "name": "VBA"
+                "name": "IDR"
             },
             {
                 "id": "uos",
-                "name": "UOS"
+                "name": "SSU"
             },
             {
                 "id": "hoeh_uof_lg",
-                "name": "Höh Uof LG"
+                "name": "Cfo suff sup"
             },
             {
                 "id": "os",
-                "name": "OS"
+                "name": "SU"
             },
             {
                 "id": "wk",
-                "name": "WK"
+                "name": "CR"
             },
             {
                 "id": "professional_military",
-                "name": "Berufsmilitär"
+                "name": "Militare di professione"
             },
             {
                 "id": "third_parties",
-                "name": "Einsatz zu Gunsten Dritter/VUM"
+                "name": "Impiego a favore di terzi/OAAM"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "Altro"
             }
         ]
     },
     "incidentlocation": {
-        "name": "Ereignisort"
+        "name": "Luogo dell’evento"
     },
     "accidentlocation": {
-        "name": "Unfallstelle",
+        "name": "Luogo dell’infortunio",
         "items": [
             {
                 "id": "field",
-                "name": "Feld"
+                "name": "campo"
             },
             {
                 "id": "housing_civil",
-                "name": "Gebäude zivil"
+                "name": "edificio civile"
             },
             {
                 "id": "mountains",
-                "name": "Gebirge"
+                "name": "montagna"
             },
             {
                 "id": "battlefield",
-                "name": "Kampfbahn"
+                "name": "pista di combattimento"
             },
             {
                 "id": "barracks",
-                "name": "Kaserne"
+                "name": "caserma"
             },
             {
                 "id": "street",
-                "name": "Strasse"
+                "name": "via pubblica"
             },
             {
                 "id": "troop_housing",
-                "name": "Truppenunterkunft"
+                "name": "accantonamento della truppa"
             },
             {
                 "id": "sporthall",
-                "name": "Turnhalle / Sportplatz"
+                "name": "palestra / campo sportivo"
             },
             {
                 "id": "forest",
-                "name": "Wald"
+                "name": "bosco"
             },
             {
                 "id": "water",
-                "name": "Wasser"
+                "name": "corso d’acqua / specchio d’acqua"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "bodyparts": {
-        "name": "Körperteil",
+        "name": "Parte del corpo",
         "items": [
             {
                 "id": "eye",
-                "name": "Auge"
+                "name": "occhio"
             },
             {
                 "id": "pelvis",
-                "name": "Becken / Genitalien"
+                "name": "bacino / genitali"
             },
             {
                 "id": "thorax",
-                "name": "Brustkorb"
+                "name": "gabbia toracica"
             },
             {
                 "id": "ellbow",
-                "name": "Ellenbogen"
+                "name": "gomito"
             },
             {
                 "id": "foot",
-                "name": "Fuss / Zehen"
+                "name": "piede / dita"
             },
             {
                 "id": "ankle",
-                "name": "Fussgelenk / Sprunggelenk"
+                "name": "articolazione del piede / articolazione tibio-tarsale"
             },
             {
                 "id": "whole_body",
-                "name": "Ganzer Körper"
+                "name": "corpo intero"
             },
             {
                 "id": "neck",
-                "name": "Hals / Nacken"
+                "name": "collo / nuca"
             },
             {
                 "id": "hand",
-                "name": "Hand / Finger"
+                "name": "mano / dita"
             },
             {
                 "id": "wrist",
-                "name": "Handgelenk"
+                "name": "polso"
             },
             {
                 "id": "hip",
-                "name": "Hüfte"
+                "name": "anca"
             },
             {
                 "id": "inner_organs",
-                "name": "Innere Organe"
+                "name": "organo interno"
             },
             {
                 "id": "jaw",
-                "name": "Kiefer"
+                "name": "mascella"
             },
             {
                 "id": "knee",
-                "name": "Knie"
+                "name": "ginocchio"
             },
             {
                 "id": "mouth",
-                "name": "Mund"
+                "name": "bocca"
             },
             {
                 "id": "nose",
-                "name": "Nase"
+                "name": "naso"
             },
             {
                 "id": "upper_arm",
-                "name": "Oberarm"
+                "name": "parte superiore del braccio"
             },
             {
                 "id": "thigh",
-                "name": "Oberschenkel"
+                "name": "coscia"
             },
             {
                 "id": "ear",
-                "name": "Ohr"
+                "name": "orecchio"
             },
             {
                 "id": "back",
-                "name": "Rücken / Wirbelsäule"
+                "name": "schiena / colonna vertebrale"
             },
             {
                 "id": "skull",
-                "name": "Schädel / Gehirn"
+                "name": "cranio / cervello"
             },
             {
                 "id": "shoulder",
-                "name": "Schulter / Schlüsselbein"
+                "name": "spalla / clavicola"
             },
             {
                 "id": "forearm",
-                "name": "Unterarm"
+                "name": "avambraccio"
             },
             {
                 "id": "lower_leg",
-                "name": "Unterschenkel"
+                "name": "parte inferiore della gamba"
             },
             {
                 "id": "tooth",
-                "name": "Zahn"
+                "name": "dente"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "branches_of_service_and_special_badges": {
-        "name": "Truppengattungen, Dienstzweige und besondere Abzeichen ",
+        "name": "Armi, servizi ausiliari e distintivi particolari",
         "items": [
             {
                 "id": "inf",
-                "name": "Infanterie"
+                "name": "fanteria"
             },
             {
                 "id": "pztrp",
-                "name": "Panzertruppen"
+                "name": "truppe blindate"
             },
             {
                 "id": "arti",
-                "name": "Artillerie"
+                "name": "artiglieria"
             },
             {
                 "id": "airforce",
-                "name": "Fliegertruppen"
+                "name": "truppe d’aviazione"
             },
             {
                 "id": "antiaircrafttroops",
-                "name": "Fliegerabwehrtruppen"
+                "name": "truppe di difesa contraerea"
             },
             {
                 "id": "engineercorps",
-                "name": "Genietruppe"
+                "name": "truppe del genio"
             },
             {
                 "id": "commandsupporttroops",
-                "name": "Führungsunterstützungstruppen"
+                "name": "truppe d’aiuto alla condotta"
             },
             {
                 "id": "rescuetroops",
-                "name": "Rettungstruppen"
+                "name": "truppe di salvataggio"
             },
             {
                 "id": "logisticstroops",
-                "name": "Logistiktruppen"
+                "name": "truppe della logistica"
             },
             {
                 "id": "paramedics",
-                "name": "Sanitätstruppen"
+                "name": "truppe sanitarie"
             },
             {
                 "id": "militarypolice",
-                "name": "Militärpolizei"
+                "name": "polizia militare"
             },
             {
                 "id": "nbcdefensetroops",
-                "name": "ABC Abwehrtruppen"
+                "name": "truppe di difesa NBC"
             },
             {
                 "id": "specialforces",
-                "name": "Spezialkräfte"
+                "name": "forze speciali"
             },
             {
                 "id": "generalstaffservice",
-                "name": "Generalstabsdienst"
+                "name": "servizio di stato maggiore generale"
             },
             {
                 "id": "militaryintelligence",
-                "name": "Militärischer Nachrichtendienst"
+                "name": "Servizio informazioni militare"
             },
             {
                 "id": "armycounseling",
-                "name": "Armeeseelsorge"
+                "name": "Assistenza spirituale dell’esercito"
             },
             {
                 "id": "psychpedservice",
-                "name": "Psychologisch-Pädagogischer Dienst"
+                "name": "Servizio psicopedagogico dell’esercito"
             },
             {
                 "id": "territorialservice",
-                "name": "Territorialdienst"
+                "name": "servizio territoriale"
             },
             {
                 "id": "standbyservice",
-                "name": "Bereitschaftsdienst"
+                "name": "servizio di prontezza"
             },
             {
                 "id": "redcross",
-                "name": "Rotkreuzdienst"
+                "name": "Servizio della Croce Rossa"
             },
             {
                 "id": "sport",
@@ -386,491 +386,491 @@
             },
             {
                 "id": "militarygame",
-                "name": "Militärspiel"
+                "name": "fanfara militare"
             },
             {
                 "id": "militaryjustice",
-                "name": "Militärjustiz"
+                "name": "giustizia militare"
             },
             {
                 "id": "offdutyactivities",
-                "name": "Ausserdienstliche Tätigkeiten (AT/SAT)"
+                "name": "attività fuori del servizio (AFS/TAFS)"
             },
             {
                 "id": "preserviceactivities",
-                "name": "Vordienstliche Tätigkeiten"
+                "name": "attività prima del servizio"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "bodyside": {
-        "name": "Körperseite",
+        "name": "Parte del corpo",
         "items": [
             {
                 "id": "left",
-                "name": "Links"
+                "name": "sinistra"
             },
             {
                 "id": "right",
-                "name": "Rechts"
+                "name": "destra"
             },
             {
                 "id": "back",
-                "name": "Hinten"
+                "name": "posteriore"
             },
             {
                 "id": "front",
-                "name": "Vorne"
+                "name": "anteriore"
             },
             {
                 "id": "unknown",
-                "name": "Unbestimmt / Unbekannt"
+                "name": "indeterminata / sconosciuta"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altra"
             }
         ]
     },
     "accidentduring": {
-        "name": "Unfall während",
+        "name": "Infortunio durante",
         "items": [
             {
                 "id": "goingout",
-                "name": "Ausgang"
+                "name": "libera uscita"
             },
             {
                 "id": "service_operation",
-                "name": "Dienstbetrieb"
+                "name": "andamento del servizio"
             },
             {
                 "id": "professionaltraining",
-                "name": "Fachausbildung"
+                "name": "istruzione specialistica"
             },
             {
                 "id": "combattraining",
-                "name": "Gefechtsausbildung"
+                "name": "istruzione al combattimento"
             },
             {
                 "id": "sport",
-                "name": "Sport"
+                "name": "sport"
             },
             {
                 "id": "vacation",
-                "name": "Urlaub"
+                "name": "congedo"
             },
             {
                 "id": "preservice",
-                "name": "Vordienstlich"
+                "name": "prima del servizio"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "weather": {
-        "name": "Witterungsverhältnisse",
+        "name": "Condizioni meteorologi-che",
         "items": [
             {
                 "id": "cloudy",
-                "name": "Bewölkt"
+                "name": "nuvoloso"
             },
             {
                 "id": "hail",
-                "name": "Hagel"
+                "name": "grandine"
             },
             {
                 "id": "fog",
-                "name": "Nebel"
+                "name": "nebbia"
             },
             {
                 "id": "rain",
-                "name": "Regen"
+                "name": "pioggia"
             },
             {
                 "id": "snow",
-                "name": "Schneefall"
+                "name": "neve"
             },
             {
                 "id": "sunny",
-                "name": "Sonnenschein"
+                "name": "soleggiato"
             },
             {
                 "id": "wind_storm",
-                "name": "Starker Wind/Sturm"
+                "name": "vento forte / tempestoso"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "ground": {
-        "name": "Untergrund",
+        "name": "Fondo",
         "items": [
             {
                 "id": "foliage_covered",
-                "name": "Laubbedeckt"
+                "name": "coperto di foglie"
             },
             {
                 "id": "wet",
-                "name": "Nass"
+                "name": "bagnato"
             },
             {
                 "id": "snow",
-                "name": "Schneebedeckt"
+                "name": "coperto di neve"
             },
             {
                 "id": "mud",
-                "name": "Schlammig"
+                "name": "fangoso"
             },
             {
                 "id": "dust",
-                "name": "Staubig"
+                "name": "polveroso"
             },
             {
                 "id": "dry",
-                "name": "Trocken"
+                "name": "asciutto"
             },
             {
                 "id": "ice",
-                "name": "Vereist"
+                "name": "gelato"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "groundtype": {
-        "name": "Bodenart",
+        "name": "Tipo di terreno",
         "items": [
             {
                 "id": "indoor",
-                "name": "Gebäudeinneres"
+                "name": "interno di un edificio"
             },
             {
                 "id": "terrain",
-                "name": "Gelände"
+                "name": "sterrato"
             },
             {
                 "id": "hard_court",
-                "name": "Hartplatz"
+                "name": "superficie dura"
             },
             {
                 "id": "street",
-                "name": "Strasse"
+                "name": "fondo stradale"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "typeofaccident": {
-        "name": "Unfallart",
+        "name": "tipo di infortunio",
         "items": [
             {
                 "id": "collision_with_person",
-                "name": "Aufprall / Zusammenstoss: mit Person"
+                "name": "urto / collisione: con una persona"
             },
             {
                 "id": "collision_with_object",
-                "name": "Aufprall / Zusammenstoss: mit Objekt"
+                "name": "urto / collisione: con un oggetto"
             },
             {
                 "id": "slip_misstep",
-                "name": "Ausrutschen / Fehltritt"
+                "name": "scivolone / piede in fallo"
             },
             {
                 "id": "pinch",
-                "name": "Einklemmen"
+                "name": "impigliamento"
             },
             {
                 "id": "drown",
-                "name": "Ertrinken"
+                "name": "annegamento"
             },
             {
                 "id": "object_sharp",
-                "name": "Gegenstand: scharf"
+                "name": "oggetto: affilato"
             },
             {
                 "id": "object_pointy",
-                "name": "Gegenstand: spitz"
+                "name": "oggetto: acuminato"
             },
             {
                 "id": "object_falling_flying",
-                "name": "Gegenstand: fallend/fliegend"
+                "name": "oggetto: in caduta/volante"
             },
             {
                 "id": "fall",
-                "name": "Herunterfallen"
+                "name": "caduta dall’alto"
             },
             {
                 "id": "insect_sting",
-                "name": "Insektenstich (gilt als Unfall)"
+                "name": "puntura d’insetto (considerata infortunio)"
             },
             {
                 "id": "sport",
-                "name": "Mannschaftssport / andere Sportart"
+                "name": "sport di squadra / altro tipo di sport"
             },
             {
                 "id": "shot_bang",
-                "name": "Schuss / Knall"
+                "name": "colpo / detonazione"
             },
             {
                 "id": "cut",
-                "name": "Schnittverletzung"
+                "name": "ferita da taglio"
             },
             {
                 "id": "jump",
-                "name": "Sprung"
+                "name": "salto"
             },
             {
                 "id": "electrocution",
-                "name": "Stromschlag"
+                "name": "scossa elettrica"
             },
             {
                 "id": "stumble",
-                "name": "Stürzen / Stolpern"
+                "name": "caduta / inciampo"
             },
             {
                 "id": "technical_defect",
-                "name": "Technischer Defekt"
+                "name": "difetto tecnico"
             },
             {
                 "id": "carry_lift",
-                "name": "Tragen / Heben"
+                "name": "trasporto / sollevamento"
             },
             {
                 "id": "handling_ammunition",
-                "name": "Umgang mit Munition"
+                "name": "maneggio di munizioni"
             },
             {
                 "id": "handling_animals",
-                "name": "Umgang mit Tieren"
+                "name": "trattamento di animali"
             },
             {
                 "id": "cauterization",
-                "name": "Verätzung"
+                "name": "ustione per corrosione"
             },
             {
                 "id": "burn",
-                "name": "Verbrennung"
+                "name": "ustione"
             },
             {
                 "id": "trafficaccident",
-                "name": "Verkehrsunfall"
+                "name": "incidente della circolazione"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "typeofinjury": {
-        "name": "Verletzungsart",
+        "name": "Tipo di lesione",
         "items": [
             {
                 "id": "asthma",
-                "name": "Atembeschwerden / Asthma"
+                "name": "difficoltà respiratoria / asma"
             },
             {
                 "id": "blisters",
-                "name": "Blasen / Hautblasen"
+                "name": "vesciche / vesciche cutanee"
             },
             {
                 "id": "fracture",
-                "name": "Bruch / Fraktur"
+                "name": "rottura / frattura"
             },
             {
                 "id": "penetration_foreign_body",
-                "name": "Eindringen von Fremdkörper"
+                "name": "ingresso di corpi estranei"
             },
             {
                 "id": "inflammation",
-                "name": "Entzündung"
+                "name": "infiammazione"
             },
             {
                 "id": "exhaustion",
-                "name": "Erschöpfung"
+                "name": "spossatezza"
             },
             {
                 "id": "heart_circulation",
-                "name": "Herz-, Kreislaufschwäche"
+                "name": "insufficienza cardiaca, insufficienza circolatoria"
             },
             {
                 "id": "concussion",
-                "name": "Hirnerschütterung"
+                "name": "commozione cerebrale"
             },
             {
                 "id": "heatstroke_dehydration",
-                "name": "Hitzschlag / Dehydrierung"
+                "name": "colpo di calore / disidratazione"
             },
             {
                 "id": "open_wound",
-                "name": "Offene Wunde"
+                "name": "ferita aperta"
             },
             {
                 "id": "bruise",
-                "name": "Quetschung / Prellung"
+                "name": "contusione / livido"
             },
             {
                 "id": "whiplash",
-                "name": "Schleudertrauma"
+                "name": "colpo di frusta"
             },
             {
                 "id": "abrasion",
-                "name": "Schürfung"
+                "name": "escoriazione"
             },
             {
                 "id": "frostbite",
-                "name": "Unterkühlung / lokale Erfrierung"
+                "name": "ipotermia / congelamento locale"
             },
             {
                 "id": "burn",
-                "name": "Verbrennung"
+                "name": "ustione"
             },
             {
                 "id": "dislocation",
-                "name": "Verrenkung / Luxation"
+                "name": "slogatura / lussazione"
             },
             {
                 "id": "sprain",
-                "name": "Verstauchung / Distorsion"
+                "name": "distorsione"
             },
             {
                 "id": "tear",
-                "name": "Zerrung / Riss / Ruptur (Organriss)"
+                "name": "stiramento/lacerazione/rottura (lacerazione dell’organo)"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "typeofillness": {
-        "name": "Krankheit",
+        "name": "malattia",
         "items": [
             {
                 "id": "flu",
-                "name": "Grippe / Erkältung"
+                "name": "influenza / raffreddore"
             },
             {
                 "id": "infection",
-                "name": "Infektion"
+                "name": "infezione"
             },
             {
                 "id": "pandemic",
-                "name": "Pandemie"
+                "name": "pandemia"
             },
             {
                 "id": "epidemic",
-                "name": "Seuche"
+                "name": "epidemia"
             },
             {
                 "id": "poisoning",
-                "name": "Vergiftung"
+                "name": "avvelenamento"
             },
             {
                 "id": "tick_bite",
-                "name": "Zeckenbiss (gilt als Krankheit)"
+                "name": "puntura di zecca (considerata una malattia)"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "typeofmentalstress": {
-        "name": "Psychische Belastung",
+        "name": "stress psichico",
         "items": [
             {
                 "id": "peer_pressure",
-                "name": "Gruppendruck"
+                "name": "pressione del gruppo"
             },
             {
                 "id": "mobbing",
-                "name": "Mobbing"
+                "name": "mobbing"
             },
             {
                 "id": "private",
-                "name": "Privat"
+                "name": "privato"
             },
             {
                 "id": "private_military",
-                "name": "Privat / Militär"
+                "name": "privato / militare"
             },
             {
                 "id": "structure_hierarchy",
-                "name": "Struktur / Hierarchie"
+                "name": "struttura / gerarchia"
             },
             {
                 "id": "overload",
-                "name": "Überforderung"
+                "name": "sovraccarico"
             },
             {
                 "id": "underload",
-                "name": "Unterforderung"
+                "name": "scarsa incentivazione"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
     "mainreason": {
-        "name": "Ursache",
+        "name": "Causa",
         "items": [
             {
                 "id": "alcohol",
-                "name": "Alkohol"
+                "name": "alcolici"
             },
             {
                 "id": "drugs",
-                "name": "Drogen"
+                "name": "stupefacenti"
             },
             {
                 "id": "external",
-                "name": "Fremdeinwirkung"
+                "name": "influsso esterno"
             },
             {
                 "id": "no_warmup",
-                "name": "Kein Warm Up"
+                "name": "nessun riscaldamento"
             },
             {
                 "id": "medication",
-                "name": "Medikamente"
+                "name": "medicamenti"
             },
             {
                 "id": "stress_timepressure",
-                "name": "Stress / Zeitdruck"
+                "name": "stress / pressione di tempo"
             },
             {
                 "id": "fatigue",
-                "name": "Übermüdung"
+                "name": "spossatezza"
             },
             {
                 "id": "environmental",
-                "name": "Umwelteinflüsse"
+                "name": "influssi ambientali"
             },
             {
                 "id": "carelessness",
-                "name": "Unachtsamkeit"
+                "name": "disattenzione"
             },
             {
                 "id": "other",
-                "name": "Andere"
+                "name": "altro"
             }
         ]
     },
-    "_rid": "hK1xAOHEsW4DAAAAAAAAAA==",
-    "_self": "dbs/hK1xAA==/colls/hK1xAOHEsW4=/docs/hK1xAOHEsW4DAAAAAAAAAA==/",
-    "_etag": "\"00003bd1-0000-1600-0000-62a9de8a0000\"",
+    "_rid": "hK1xAOHEsW4FAAAAAAAAAA==",
+    "_self": "dbs/hK1xAA==/colls/hK1xAOHEsW4=/docs/hK1xAOHEsW4FAAAAAAAAAA==/",
+    "_etag": "\"000033d2-0000-1600-0000-62a9f0740000\"",
     "_attachments": "attachments/",
-    "_ts": 1655299722
+    "_ts": 1655304308
 }
