@@ -1,55 +1,58 @@
 div.mb-3
-    label.form-label(for='incidentlocation') #{languageData.incidentlocation.name}:
-    input#locationsearch.form-control
+    label.form-label(for='locationsearch') #{languageData.incidentlocation.name}:
+    input#locationsearch.form-control(name='incidentlocation', list='incidentlocation')
+    datalist#incidentlocation
     small#searchHelp.form-text.text-muted Bitte suchen Sie nach dem Ort via Namen oder PLZ
-    br
-    select#incidentlocation.form-select(name='incidentlocation')
+    input#locationobject(type='hidden', name='locationobject')
 
 script.
-    (() => {
+    (async () => {
         let searchinput = document.getElementById("locationsearch");
-        searchinput.addEventListener('input', search)
+        searchinput.addEventListener('keypress', await search);
+        searchinput.addEventListener('change', await magic)
+    })();
 
-        let select = document.getElementById("incidentlocation");
-        select.disabled = true; 
-
-    })();   
+    function magic(e) {
+        let datalist = document.getElementById("incidentlocation");
+        let optionElement = datalist.options.namedItem(e.target.value);
+        console.log(optionElement, e.target.value)
+        let locationObject = optionElement.dataset['location'];
+        document.getElementById("locationobject").value = locationObject;
+    }
 
     let fire = true;
-    function search(e) {
+    async function search(e) {
         if (fire) {
             fire = false;
-            setTimeout(() => {
-                getLocations(e.target.value)
+            setTimeout(async () => {
+                await getLocations(e.target.value)
                 fire = true;
             }, 1000)
         }
     }
 
-    function getLocations(query) {
+    async function getLocations(query) {
+        console.log("GET Locations")
         let limit = 15
         let url = "https://swisspost.opendatasoft.com/api/v2/catalog/datasets/plz_verzeichnis_v2/records?where=search%28%22" + query + "%22%29&limit="+ limit +"&offset=0&timezone=UTC&select=postleitzahl,gplz,ortbez18,ortbez27,kanton,geo_point_2d"
-        fetch(url).then((response) => {
-            // The API call was successful!
-            return response.json();
-        }).then((data) => {
-
-            // This is the JSON from our response
+        try {
+            let response = await fetch(url)
+            let data = await response.json();
             let locations = data.records;
             
-            let select = document.getElementById("incidentlocation")
-            while (select.options.length) select.remove(0);
+            let datalist = document.getElementById("incidentlocation");
+            datalist.innerHTML = '';
 
             for (let l of locations) {
                 let element = document.createElement("option");
-                element.textContent = l.record.fields.postleitzahl + " - " + l.record.fields.ortbez18;
-                element.value = JSON.stringify(l.record.fields);
-                select.appendChild(element);
+                element.id = l.record.fields.postleitzahl + " - " + l.record.fields.ortbez18;
+                element.value = l.record.fields.postleitzahl + " - " + l.record.fields.ortbez18;
+                element.dataset['location'] = JSON.stringify(l.record.fields);
+                datalist.appendChild(element);
             }
-
-            select.disabled = select.options.length ? false : true;
-        }).catch((err) => {
+            datalist.focus();
+        } catch (err) {
             // There was an error
             console.warn('Something went wrong.', err);
-        });
+        };   
     }

@@ -109,7 +109,8 @@ async function submitForm(req) {
 
     const newItem = req.body;
 
-    newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
+    newItem.incidentlocation = JSON.parse(newItem.locationobject);
+    newItem.locationobject = undefined;
 
     const { resource: createdItem } = await container.items.create(newItem);
 
