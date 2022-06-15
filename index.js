@@ -109,9 +109,11 @@ async function submitForm(req) {
 
     const newItem = req.body;
 
+    newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
+
     const { resource: createdItem } = await container.items.create(newItem);
 
-    console.log(`\r\nCreated new item: ${createdItem.id} - ${createdItem.description}\r\n`);
+    console.log(`\r\nCreated new item: ${createdItem.id}\r\n`);
 
     return "Your feedback successfully saved."
 }

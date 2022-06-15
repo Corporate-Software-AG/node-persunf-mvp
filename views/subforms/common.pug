@@ -1,6 +1,12 @@
 div.mb-3
     label.form-label(for='form_id') ID:
     input#form_id.form-control(type='text', name='form_id', value=id, readonly)
+
+div.mb-3
+    label.form-label(for='mzrname') #{languageData.mzrlocations.name}:
+    input#mzrname.form-control(type='text' name='mzrname' value=languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name, disabled)
+    input#mzr.form-control(type='text' name='mzr' value=deviceLocation, hidden)
+    
 div.mb-3
     label.form-label(for='date') #{languageData.dateofincident.name}:
     input#date.form-control(type='date', name='date')
@@ -14,10 +20,6 @@ div.mb-3
         while n >= 1900
             option(value=n) #{n}
             - n--; 
-div.mb-3
-    label.form-label(for='mzrname') #{languageData.mzrlocations.name}:
-    input#mzrname.form-control(type='text' name='mzrname' value=languageData.mzrlocations.items.find( ({id}) => id === deviceLocation).name, disabled)
-    input#mzr.form-control(type='text' name='mzr' value=deviceLocation, hidden)
 
 div.mb-3
     label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
