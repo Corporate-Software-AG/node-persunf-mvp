@@ -34,8 +34,6 @@ div.mb-3
     select#branches_of_service_and_special_badges.form-select(name='branches_of_service_and_special_badges')
         each val in languageData.branches_of_service_and_special_badges.items
             option(value=val.id) #{val.name} 
-div.mb-3
-    label.form-label(for='incidentlocation') #{languageData.incidentlocation.name}:
-    select#bodypincidentlocationarts.form-select(name='incidentlocation')
-        each val in languageData.incidentlocation.items
-            option(value=val.id) #{val.name}
+
+include ./../locations.pug
+

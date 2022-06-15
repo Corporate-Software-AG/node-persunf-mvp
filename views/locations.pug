@@ -1,0 +1,54 @@
+div.mb-3
+    label.form-label(for='incidentlocation') #{languageData.incidentlocation.name}:
+    input#locationsearch.form-control
+    br
+    select#incidentlocation.form-select(name='incidentlocation')
+
+script.
+    (() => {
+        let searchinput = document.getElementById("locationsearch");
+        searchinput.addEventListener('input', search)
+
+        let select = document.getElementById("incidentlocation");
+        select.disabled = true; 
+
+    })();   
+
+    let fire = true;
+    function search(e) {
+        if (fire) {
+            fire = false;
+            setTimeout(() => {
+                getLocations(e.target.value)
+                fire = true;
+            }, 1000)
+        }
+    }
+
+    function getLocations(query) {
+        let limit = 15
+        let url = "https://swisspost.opendatasoft.com/api/v2/catalog/datasets/plz_verzeichnis_v2/records?where=search%28%22" + query + "%22%29&limit="+ limit +"&offset=0&timezone=UTC"
+        fetch(url).then((response) => {
+            // The API call was successful!
+            return response.json();
+        }).then((data) => {
+
+            // This is the JSON from our response
+            let locations = data.records;
+            
+            let select = document.getElementById("incidentlocation")
+            while (select.options.length) select.remove(0);
+
+            for (let l of locations) {
+                let element = document.createElement("option");
+                element.textContent = l.record.fields.postleitzahl + " - " + l.record.fields.ortbez18;
+                element.value = l.record.fields;
+                select.appendChild(element);
+            }
+
+            select.disabled = select.options.length ? false : true;
+        }).catch((err) => {
+            // There was an error
+            console.warn('Something went wrong.', err);
+        });
+    }
