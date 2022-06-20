@@ -9,13 +9,14 @@ div.mb-3
     
 div.mb-3
     label.form-label(for='date') #{languageData.dateofincident.name}:
-    input#date.form-control(type='date', name='date')
+    input#date.form-control(type='date', name='date', required)
 div.mb-3
     label.form-label(for='time') #{languageData.timeofincident.name}:
-    input#time.form-control(type='time', name='time')
+    input#time.form-control(type='time', name='time', required)
 div.mb-3
     label.form-label(for='birthyear') #{languageData.birthyear.name}:
-    select#birthyear.form-select(name='birthyear')
+    select#birthyear.form-select(name='birthyear', required)
+        option(value='', disabled, selected) #{languageData.labels.select}
         - var n = 2022;
         while n >= 1900
             option(value=n) #{n}
@@ -23,17 +24,20 @@ div.mb-3
 
 div.mb-3
     label.form-label(for='trooplocations') #{languageData.trooplocations.name}:
-    select#trooplocations.form-select(name='trooplocations')
+    select#trooplocations.form-select(name='trooplocations', required)
+        option(value='', disabled, selected) #{languageData.labels.select}
         each val in languageData.trooplocations.items
             option(value=val.id) #{val.name} 
 div.mb-3
     label.form-label(for='servicetype') #{languageData.servicetype.name}:
-    select#servicetype.form-select(name='servicetype')
+    select#servicetype.form-select(name='servicetype', required)
+        option(value='', disabled, selected) #{languageData.labels.select}
         each val in languageData.servicetype.items
             option(value=val.id) #{val.name} 
 div.mb-3
     label.form-label(for='branches_of_service_and_special_badges') #{languageData.branches_of_service_and_special_badges.name}:
-    select#branches_of_service_and_special_badges.form-select(name='branches_of_service_and_special_badges')
+    select#branches_of_service_and_special_badges.form-select(name='branches_of_service_and_special_badges', required)
+        option(value='', disabled, selected) #{languageData.labels.select}
         each val in languageData.branches_of_service_and_special_badges.items
             option(value=val.id) #{val.name} 
 

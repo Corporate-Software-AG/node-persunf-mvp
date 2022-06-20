@@ -5,6 +5,7 @@
         "title": "Formular",
         "select": "--- Wählen ---",
         "consult_doctor": "Mit dem medizinischen Personal ausfüllen",
+        "search_help": "Bitte suchen Sie nach dem Ort via Namen oder PLZ",
         "submit": "Einreichen"
     },
     "dateofincident": {

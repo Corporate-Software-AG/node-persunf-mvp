@@ -1,6 +1,6 @@
 div.mb-3
     label.form-label(for='typeofillness') #{languageData.typeofillness.name}:
-    select#typeofillness.form-select(name='typeofillness', multiple)
+    select#typeofillness.form-select(name='typeofillness', multiple, required)
         each val in languageData.typeofillness.items
             option(value=val.id) #{val.name}
 include common-end.pug

@@ -5,6 +5,7 @@
         "title": "Formulaire",
         "select": "--- choisir ---",
         "consult_doctor": "Remplir avec le personnel médical",
+        "search_help": "Veuillez rechercher l'emplacement par nom ou code postal",
         "submit": "soumettre"
     },
     "dateofincident": {

@@ -5,6 +5,7 @@
         "title": "Modulo",
         "select": "--- selezionare ---",
         "submit": "Sottoscrivi",
+        "search_help": "Si prega di cercare la posizione per nome o codice postale",
         "consult_doctor": "Compilare con il personale medico"
     },
     "dateofincident": {

@@ -42,16 +42,14 @@ style.
     img {
         max-width: 100%;
     }
-    .subform,
-    .subform-unfall {
+    .subform {
         display: none;
     }
 script.
-    (function() {
-        //document.getElementById('date').valueAsDate = new Date();
-    })();
 
     function categorySelected(selectObject) {
         document.querySelectorAll('.subform').forEach((element) => element.style.display = 'none');
         document.querySelectorAll('.subform-' + selectObject.value).forEach((element) => element.style.display = 'block');
+        document.querySelectorAll('.subform select').forEach((element) => {element.value = ''; element.required = false});
+        document.querySelectorAll('.subform-' + selectObject.value + ' select').forEach((element) => element.required = true);
     }
