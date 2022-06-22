@@ -43,3 +43,13 @@ div.mb-3
 
 include ./../locations.pug
 
+div.mb-3
+    label.form-label(for='bodyparts') #{languageData.bodyparts.name}:
+    select#bodyparts.form-select(name='bodyparts', multiple, required)
+        each val in languageData.bodyparts.items
+            option(value=val.id) #{val.name} 
+div.mb-3
+    label.form-label(for='bodyside') #{languageData.bodyside.name}:
+    select#bodyside.form-select(name='bodyside', multiple, required)
+        each val in languageData.bodyside.items
+            option(value=val.id) #{val.name} 
