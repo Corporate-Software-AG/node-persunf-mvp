@@ -50,7 +50,7 @@ script.
     }
 
     async function getLocations(query) {
-        let limit = 15
+        let limit = 5
         let url = "https://swisspost.opendatasoft.com/api/v2/catalog/datasets/plz_verzeichnis_v2/records?where=search%28%22" + query + "%22%29&limit="+ limit +"&offset=0&timezone=UTC&select=postleitzahl,gplz,ortbez18,ortbez27,kanton,geo_point_2d"
         try {
             let response = await fetch(url)
