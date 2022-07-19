@@ -1,42 +1,21 @@
-div.mb-3
-    label.form-label(for='locationsearch') #{languageData.incidentlocation.name}:
-    .row
-        .col-12(style='position: relative')
-            input#locationsearch.form-control(name='incidentlocation', list='incidentlocation', autocomplete='off')
-            button#clearButton.btn.btn-danger(type='button' style='display: none; position: absolute; right: 12px; top: 0;') X
-    datalist#incidentlocation
-    input#locationObjectField.form-control(type='hidden', name='locationobject', required)
-    small#searchHelp.form-text.text-muted #{languageData.labels.search_help}
+.mb-3
+    label.form-label(for='searchinput') #{languageData.incidentlocation.name}:
+    input#searchinput.form-control(type="text")
+    small.form-text.text-muted #{languageData.labels.search_help}
+.mb-3
+    #locationresults.dropdown-content.hide
+
+input#locationObjectFieldName.form-control(type='text', disabled, required)
+input#locationObjectField.form-control(type='hidden', name='incidentlocation', required)
+small.form-text.text-muted #{languageData.labels.search_selected}
 
 script.
-    let searchinput = document.getElementById("locationsearch");
-    let datalist = document.getElementById("incidentlocation");
-    let locationObjectField = document.getElementById("locationObjectField");
-    let clearButton = document.getElementById("clearButton");
 
+    let locationresults = document.getElementById("locationresults");
+    let searchinput = document.getElementById("searchinput");
     (async () => {
         searchinput.addEventListener('keypress', await onkeypress);
-        searchinput.addEventListener('change', await onchange);
-        clearButton.addEventListener('click', await onclick);
     })();
-
-    function onclick() {
-        datalist.innerHTML = '';
-        locationObjectField.value = '';
-        searchinput.value = '';
-        searchinput.disabled = false;
-        clearButton.style.display = 'none';
-    }
-
-    function onchange(e) {
-        let optionElement = datalist.options.namedItem(e.target.value);
-        let locationDataObject = optionElement.dataset['location'];
-        
-        locationObjectField.value = locationDataObject;
-        searchinput.disabled = true;
-
-        clearButton.style.display = 'block';
-    }
 
     let fetchLocations = true;
     async function onkeypress(e) {
@@ -48,27 +27,52 @@ script.
             }, 1000)
         }
     }
+    
+    function onselect(e) {
+        locationresults.innerHTML = '';
+        searchinput.value = '';
+        document.getElementById("locationObjectFieldName").value = e.target.id
+        document.getElementById("locationObjectField").value = e.target.dataset['location']
+    }
 
     async function getLocations(query) {
-        let limit = 15
+        let limit = 10
         let url = "https://swisspost.opendatasoft.com/api/v2/catalog/datasets/plz_verzeichnis_v2/records?where=search%28%22" + query + "%22%29&limit="+ limit +"&offset=0&timezone=UTC&select=postleitzahl,gplz,ortbez18,ortbez27,kanton,geo_point_2d"
         try {
             let response = await fetch(url)
             let data = await response.json();
             let locations = data.records;
             
-            datalist.innerHTML = '';
+            locationresults.innerHTML = '';
+            
+            locations = uniqByKeepFirst(locations, i => i.record.fields.postleitzahl)
+            locations = uniqByKeepFirst(locations, i => i.record.fields.ortbez18)
 
             for (let l of locations) {
-                let element = document.createElement("option");
+                let element = document.createElement("a");
                 let valueRef = l.record.fields.postleitzahl + " - " + l.record.fields.ortbez18 + " (" + l.record.fields.kanton + ")";
-                element.id = valueRef;
-                element.value = valueRef;
+                element.id = valueRef
+                element.innerHTML = valueRef;
+                element.className = "dropdown-item";
                 element.dataset['location'] = JSON.stringify(l.record.fields);
-                datalist.appendChild(element);
+                element.addEventListener('click', onselect);
+                locationresults.appendChild(element);
             }
-            datalist.focus();
         } catch (err) {
             console.warn('Something went wrong.', err);
         };   
+    }
+    function uniqByKeepFirst(a, key) {
+        let seen = new Set();
+        return a.filter(item => {
+            let k = key(item);
+            return seen.has(k) ? false : seen.add(k);
+        });
+    }
+
+
+style.
+    .dropdown-content a {
+        padding: .4em .3em;
+        text-decoration: none;
     }

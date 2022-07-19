@@ -2,7 +2,6 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080;
 const path = require('path');
-const short = require('short-uuid');
 
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
@@ -56,7 +55,6 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/submit_form', async (req, res) => {
-    console.log("FORM POST")
     let queryResponse = await submitForm(req)
     res.render('finish',
         { msg: queryResponse });
@@ -85,8 +83,8 @@ function setUpIoT(targetDevice) {
 }
 
 async function getLanguageData(code) {
-    console.log(`Querying container: coredata`);
     const containerId = "coredata"
+    console.log('Querying container: ' + containerId);
     const container = database.container(containerId);
     await dbContext.create(client, databaseId, containerId);
 
@@ -109,8 +107,7 @@ async function submitForm(req) {
 
     const newItem = req.body;
 
-    newItem.incidentlocation = JSON.parse(newItem.locationobject);
-    newItem.locationobject = undefined;
+    newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
 
     const { resource: createdItem } = await container.items.create(newItem);
 
