@@ -6,7 +6,8 @@
         "select": "--- choisir ---",
         "consult_doctor": "Remplir avec le personnel médical",
         "search_help": "Veuillez rechercher l'emplacement par nom ou code postal",
-        "submit": "soumettre"
+        "submit": "soumettre",
+        "search_selected": "Lieu de l'événement sélectionné"
     },
     "dateofincident": {
         "name": "Date de l’événement"
@@ -83,16 +84,160 @@
         "name": "Emplacement de la troupe Commandement",
         "items": [
             {
-                "id": "ka",
-                "name": "Kaserne Aarau"
+                "id": "aarau",
+                "name": "Aarau"
             },
             {
-                "id": "kb",
-                "name": "Kaserne Bern"
+                "id": "airolo",
+                "name": "Airolo"
             },
             {
-                "id": "kp",
-                "name": "Kaserne Payern"
+                "id": "andermatt",
+                "name": "Andermatt"
+            },
+            {
+                "id": "bern",
+                "name": "Bern"
+            },
+            {
+                "id": "bernex",
+                "name": "Bernex"
+            },
+            {
+                "id": "biere",
+                "name": "Bière"
+            },
+            {
+                "id": "birmensdorf",
+                "name": "Birmensdorf"
+            },
+            {
+                "id": "bremgarten",
+                "name": "Bremgarten"
+            },
+            {
+                "id": "brugg",
+                "name": "Brugg"
+            },
+            {
+                "id": "chamblon",
+                "name": "Chamblon"
+            },
+            {
+                "id": "chur",
+                "name": "Chur"
+            },
+            {
+                "id": "colombier",
+                "name": "Colombier"
+            },
+            {
+                "id": "dailly",
+                "name": "Dailly"
+            },
+            {
+                "id": "drognens",
+                "name": "Drognens"
+            },
+            {
+                "id": "duebendorf",
+                "name": "Dübendorf"
+            },
+            {
+                "id": "emmen",
+                "name": "Emmen"
+            },
+            {
+                "id": "frauenfeld",
+                "name": "Frauenfeld"
+            },
+            {
+                "id": "fribourg",
+                "name": "Fribourg"
+            },
+            {
+                "id": "genf",
+                "name": "Genf"
+            },
+            {
+                "id": "herisau",
+                "name": "Herisau"
+            },
+            {
+                "id": "hinterrhein",
+                "name": "Hinterrhein"
+            },
+            {
+                "id": "isone",
+                "name": "Isone"
+            },
+            {
+                "id": "jassbach",
+                "name": "Jassbach"
+            },
+            {
+                "id": "kloten-buelach",
+                "name": "Kloten-Bülach"
+            },
+            {
+                "id": "liestal",
+                "name": "Liestal"
+            },
+            {
+                "id": "magglingen",
+                "name": "Magglingen"
+            },
+            {
+                "id": "monte_ceneri",
+                "name": "Monte Ceneri"
+            },
+            {
+                "id": "moudon",
+                "name": "Moudon"
+            },
+            {
+                "id": "payerne",
+                "name": "Payerne"
+            },
+            {
+                "id": "sand-schoenbuehl",
+                "name": "Sand-Schönbühl"
+            },
+            {
+                "id": "sion",
+                "name": "Sion"
+            },
+            {
+                "id": "spiez",
+                "name": "Spiez"
+            },
+            {
+                "id": "st_gallen",
+                "name": "St. Gallen"
+            },
+            {
+                "id": "st_luzisteig",
+                "name": "St. Luzisteig"
+            },
+            {
+                "id": "stans",
+                "name": "Stans"
+            },
+            {
+                "id": "thun",
+                "name": "Thun"
+            },
+            {
+                "id": "walenstadt",
+                "name": "Walenstadt"
+            },
+            {
+                "id": "wangen_aA",
+                "name": "Wangen an der Aare"
+            },
+            {
+                "id": "wichlen",
+                "name": "Wichlen"
             }
         ]
     },
@@ -871,7 +1016,7 @@
     },
     "_rid": "hK1xAOHEsW4EAAAAAAAAAA==",
     "_self": "dbs/hK1xAA==/colls/hK1xAOHEsW4=/docs/hK1xAOHEsW4EAAAAAAAAAA==/",
-    "_etag": "\"000098d1-0000-1600-0000-62a9e7a80000\"",
+    "_etag": "\"6800aecb-0000-1600-0000-62d7ae420000\"",
     "_attachments": "attachments/",
-    "_ts": 1655302056
+    "_ts": 1658302018
 }
