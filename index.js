@@ -31,6 +31,8 @@ app.use('/favicon.ico', express.static('favicon.ico'));
 
 app.use(express.urlencoded());
 
+
+
 app.get('/', async (req, res) => {
     let language = req.query.language;
     let deviceId = req.query.deviceId;
@@ -58,6 +60,11 @@ app.post('/submit_form', async (req, res) => {
     let queryResponse = await submitForm(req)
     res.render('finish',
         { msg: queryResponse });
+})
+
+app.get('/pistatus', async (req, res) => {
+    let piStatusData = await getPiStatusData();
+    res.render("pistatus", { title: "Pi Status", piStatusData: piStatusData });
 })
 
 app.listen(port, () => {
@@ -98,6 +105,24 @@ async function getLanguageData(code) {
         .query(querySpec).fetchNext();
 
     return items[0];
+}
+
+async function getPiStatusData() {
+    const containerId = "pistatus"
+    console.log('Querying container: ' + containerId);
+    const container = database.container(containerId);
+    await dbContext.create(client, databaseId, containerId);
+
+    // query to return all items
+    const querySpec = {
+        query: "SELECT * from c"
+    };
+
+    // read all items in the Items container
+    const { resources: items } = await container.items
+        .query(querySpec).fetchNext();
+
+    return items;
 }
 
 async function submitForm(req) {
