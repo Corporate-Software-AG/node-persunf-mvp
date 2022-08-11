@@ -35,29 +35,29 @@ app.use(express.urlencoded());
 
 app.get('/', async (req, res) => {
 
-    let language = req.query.language;
-    let deviceId = req.query.deviceId;
-    let deviceLocation = req.query.deviceLocation;
-    let verificationCode = req.query.verificationCode;
+    const queryLanguage = req.query.language;
+    const queryDeviceId = req.query.deviceId;
+    const queryVerificationCode = req.query.verificationCode;
 
+    const registry = Registry.fromConnectionString(iotConnectionString);
+    const deviceTwin = await getDeviceTwin(registry, queryDeviceId);
+    const isCodeVerified = deviceTwin.properties.desired.verificationCode === queryVerificationCode;
+    setNewVerificationCode(deviceTwin);
 
-    if (!deviceId) {
-        res.render("error", { title: "Error", message: "invalid Device ID" });
-    } else if (!verificationCode) {
+    if (!deviceTwin) {
+        res.render("error", { title: "Error", message: "Device not found" });
+    } else if (!isCodeVerified) {
         res.render("error", { title: "Error", message: "invalid verification code" });
-    } else if (!language) {
+    } else if (!queryLanguage) {
         res.render("home", { title: "Home" });
     } else {
-        let registry = Registry.fromConnectionString(iotConnectionString);
-        let twin = getDeviceTwin(registry, deviceId);
-        // TODO: twin code Validation
-        setNewVerificationCode(registry, twin);
-        let languageData = await getLanguageData(req.query.language);
+        const languageData = await getLanguageData(queryLanguage);
+        const deviceLocation = deviceTwin.properties.desired.mzr;
         const locationExists = (e) => e.id === deviceLocation;
         if (!languageData.mzrlocations.items.some(locationExists)) {
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
-            res.render("form", { title: "Formular", id: req.query.verificationCode, languageData: languageData, deviceLocation: deviceLocation });
+            res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
         }
     }
 })
@@ -77,30 +77,17 @@ app.listen(port, () => {
     console.log(`This app is listening at http://localhost:${port}`)
 })
 
-function getDeviceTwin(registry, deviceId) {
-    registry.getTwin(deviceId, (err, twin) => {
-        if (err) {
-            console.error(err.message);
-        } else {
-            console.log(JSON.stringify(twin));
-            return twin;
-        }
-    });
+async function getDeviceTwin(registry, deviceId) {
+    let response = await registry.getTwin(deviceId);
+    return response.responseBody;
 }
 
-function setNewVerificationCode(registry, twin) {
-    twin.update(twinPatch, (err, twin) => {
+function setNewVerificationCode(twin) {
+    const twinPatch = { properties: { desired: { verificationCode: uuidv4() } } }
+
+    twin.update(twinPatch, (err) => {
         if (err) {
             console.error(err.message);
-        } else {
-            console.log(JSON.stringify(twin));
-            registry.updateTwin(twin.deviceId, { properties: { desired: { verificationCode: uuidv4() } } }, twin.etag, (err, twin) => {
-                if (err) {
-                    console.error(err.message);
-                } else {
-                    console.log(JSON.stringify(twin));
-                }
-            });
         }
     });
 }
