@@ -41,7 +41,6 @@ app.get('/', async (req, res) => {
     const registry = Registry.fromConnectionString(iotConnectionString);
     const deviceTwin = await getDeviceTwin(registry, queryDeviceId);
     const isCodeVerified = deviceTwin.properties.desired.verificationCode === queryVerificationCode;
-    setNewVerificationCode(deviceTwin);
 
     if (!deviceTwin) {
         res.render("error", { title: "Error", message: "Device not found" });
@@ -56,6 +55,7 @@ app.get('/', async (req, res) => {
         if (!languageData.mzrlocations.items.some(locationExists)) {
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
+            setNewVerificationCode(deviceTwin);
             res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
         }
     }
