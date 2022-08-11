@@ -12,7 +12,6 @@ const { endpoint, key, databaseId } = config;
 const client = new CosmosClient({ endpoint, key });
 const database = client.database(databaseId);
 
-const IotClient = require('azure-iothub').Client;
 const Registry = require('azure-iothub').Registry;
 
 const iotConnectionString = process.env.IOTHUB_CONNECTION_STRING;
@@ -31,7 +30,7 @@ app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 app.use('/favicon.ico', express.static('favicon.ico'));
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
 
