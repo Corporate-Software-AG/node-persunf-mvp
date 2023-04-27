@@ -1,6 +1,0 @@
-div.mb-3
-    label.form-label(for='typeofmentalstress') #{languageData.typeofmentalstress.name}:
-    select#typeofmentalstress.form-select(name='typeofmentalstress', multiple, required)
-        each val in languageData.typeofmentalstress.items
-            option(value=val.id) #{val.name}
-include common-end.pug

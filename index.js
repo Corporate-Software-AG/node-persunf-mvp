@@ -34,9 +34,19 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get('/', async (req, res) => {
 
-    const queryLanguage = req.query.language;
+    let queryLanguage = req.query.language;
     const queryDeviceId = req.query.deviceId;
     const queryVerificationCode = req.query.verificationCode;
+
+    if (queryDeviceId == "DEBUG") {
+        if (!queryLanguage) {
+            queryLanguage = "de";
+        }
+        const languageData = await getLanguageData(queryLanguage);
+        const deviceLocation = "mzr_wa";
+        res.render("form", { title: "Formular", id: queryDeviceId, languageData: languageData, deviceLocation: deviceLocation });
+        return;
+    }
 
     const registry = Registry.fromConnectionString(iotConnectionString);
     const deviceTwin = await getDeviceTwin(registry, queryDeviceId);
