@@ -1,7 +1,7 @@
 const config = {
-    endpoint: "https://mvppersunf.documents.azure.com:443/",
+    endpoint: "https://db-epes-cosmos.documents.azure.com:443/",
     key: process.env.DB_KEY,
-    databaseId: "mvp_persunf",
+    databaseId: "db_epes",
     containerId: "items",
     partitionKey: { kind: "Hash", paths: ["/id"] }
 };
