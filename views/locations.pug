@@ -14,11 +14,11 @@ script.
     let locationresults = document.getElementById("locationresults");
     let searchinput = document.getElementById("searchinput");
     (async () => {
-        searchinput.addEventListener('keypress', await onkeypress);
+        searchinput.addEventListener('input', await oninput);
     })();
 
     let fetchLocations = true;
-    async function onkeypress(e) {
+    async function oninput(e) {
         if (fetchLocations) {
             fetchLocations = false;
             setTimeout(async () => {
