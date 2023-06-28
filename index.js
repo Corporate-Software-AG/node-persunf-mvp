@@ -55,7 +55,7 @@ app.get('/', async (req, res) => {
     if (!deviceTwin) {
         res.render("error", { title: "Error", message: "Device not found" });
     } else if (!isCodeVerified) {
-        res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
+        res.render("error", { title: "Error", message: "invalid verification code - Bitte scannen Sie den Code neu - Veuillez rescanner le code - Si prega di ripetere la scansione del codice" });
     } else if (!queryLanguage) {
         res.render("home", { title: "Home" });
     } else {
