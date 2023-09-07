@@ -11,8 +11,15 @@ html
                     img(src="https://mvppersunf.blob.core.windows.net/images/Logo-Schweizerische-Eidgenossenschaft.png")
         section
             .container
-                h1= "Pi Status Dashboard"
+                h1= "IoT Devices Status Dashboard"
                 hr
+                .row 
+                    .col-sm
+                        p(class= "first")= "Device ID"
+                    .col-sm
+                        p(class= "first")= "Location"
+                    .col-sm
+                        p(class= "first")= "IoT Hub Connectivity"
                 each e in piStatusData
                     .row 
                         .col-sm
@@ -40,12 +47,15 @@ style.
         margin: 0;
         padding: 0;
     }
+    .first {
+        font-weight: 800;
+    }
     .online {
         font-weight: 400;
         color: green;
     }
     .offline {
-        font-weight: 800;
+        font-weight: 600;
         color: red;
     }
     
