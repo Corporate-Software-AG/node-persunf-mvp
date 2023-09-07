@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Corporate-Software-AG/node-persunf-mvp#readme",
   "dependencies": {
     "@azure/cosmos": "^3.15.1",
+    "applicationinsights": "^2.7.3",
     "axios": "^0.24.0",
     "azure-iothub": "^1.14.6",
     "azure-storage": "^2.10.5",
