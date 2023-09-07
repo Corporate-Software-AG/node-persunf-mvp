@@ -3,8 +3,7 @@ const app = express()
 const port = process.env.PORT || 8080;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-let appInsights = require('applicationinsights');
-let appInsightsClient = appInsights.defaultClient;
+const appInsights = require('applicationinsights');
 
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
@@ -39,7 +38,7 @@ app.get('/', async (req, res) => {
     let queryLanguage = req.query.language;
     const queryDeviceId = req.query.deviceId;
     const queryVerificationCode = req.query.verificationCode;
-    appInsightsClient.trackEvent({ name: "START", properties: { customProperty: "Request initiated" } });
+    appInsights.defaultClient.trackEvent({ name: "START", properties: { customProperty: "Request initiated" } });
 
     if (queryDeviceId == "DEBUG") {
         if (!queryLanguage) {
@@ -60,7 +59,7 @@ app.get('/', async (req, res) => {
     } else if (!isCodeVerified) {
         res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
     } else if (!queryLanguage) {
-        appInsightsClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded " } });
+        appInsights.defaultClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded " } });
         res.render("home", { title: "Home" });
     } else {
         const languageData = await getLanguageData(queryLanguage);
@@ -69,7 +68,7 @@ app.get('/', async (req, res) => {
         if (!languageData.mzrlocations.items.some(locationExists)) {
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
-            appInsightsClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded Form Frontend" } });
+            appInsights.defaultClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded Form Frontend" } });
             setNewVerificationCode(deviceTwin);
             res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
         }
@@ -77,7 +76,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/submit_form', async (req, res) => {
-    appInsightsClient.trackEvent({ name: "SUBMIT", properties: { customProperty: "Form submitted" } });
+    appInsights.defaultClient.trackEvent({ name: "SUBMIT", properties: { customProperty: "Form submitted" } });
     let queryResponse = await submitForm(req)
     res.render('finish',
         { msg: queryResponse });
