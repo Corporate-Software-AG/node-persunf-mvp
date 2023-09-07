@@ -46,6 +46,7 @@ app.get('/', async (req, res) => {
         }
         const languageData = await getLanguageData(queryLanguage);
         const deviceLocation = "mzr_wa";
+        appInsights.defaultClient.trackEvent({ name: "DEBUG Form", properties: { message: "loaded Debug Form" } });
         res.render("form", { title: "Formular", id: queryDeviceId, languageData: languageData, deviceLocation: deviceLocation });
         return;
     }
@@ -59,7 +60,7 @@ app.get('/', async (req, res) => {
     } else if (!isCodeVerified) {
         res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
     } else if (!queryLanguage) {
-        appInsights.defaultClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded " } });
+        appInsights.defaultClient.trackEvent({ name: "LANGUAGE", properties: { message: "loaded Language Screen", location: deviceTwin.properties.desired.mzr } });
         res.render("home", { title: "Home" });
     } else {
         const languageData = await getLanguageData(queryLanguage);
@@ -68,7 +69,7 @@ app.get('/', async (req, res) => {
         if (!languageData.mzrlocations.items.some(locationExists)) {
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
-            appInsights.defaultClient.trackEvent({ name: "FORM", properties: { customProperty: "loaded Form Frontend" } });
+            appInsights.defaultClient.trackEvent({ name: "FORM", properties: { message: "loaded Form Frontend", location: deviceLocation } });
             setNewVerificationCode(deviceTwin);
             res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
         }
@@ -76,15 +77,14 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/submit_form', async (req, res) => {
-    appInsights.defaultClient.trackEvent({ name: "SUBMIT", properties: { customProperty: "Form submitted" } });
     let queryResponse = await submitForm(req)
     res.render('finish',
         { msg: queryResponse });
 })
 
-app.get('/pistatus', async (req, res) => {
+app.get('/iotstatus', async (req, res) => {
     let piStatusData = await getPiStatusData();
-    res.render("pistatus", { title: "Pi Status", piStatusData: piStatusData });
+    res.render("pistatus", { title: "IoT Devices Status", piStatusData: piStatusData });
 })
 
 app.listen(port, () => {
@@ -149,6 +149,8 @@ async function submitForm(req) {
     await dbContext.create(client, databaseId, containerId);
 
     const newItem = req.body;
+
+    appInsights.defaultClient.trackEvent({ name: "SUBMIT", properties: { message: "Form submitted", device: newItem.mzr } });
 
     newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
 
