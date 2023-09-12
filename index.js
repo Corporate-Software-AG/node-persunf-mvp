@@ -45,8 +45,9 @@ app.get('/', async (req, res) => {
             queryLanguage = "de";
         }
         const languageData = await getLanguageData(queryLanguage);
-        const deviceLocation = "mzr_wa";
+        const deviceLocation = "debug2";
         appInsights.defaultClient.trackEvent({ name: "DEBUG Form", properties: { message: "loaded Debug Form" } });
+        await createEvent("DEBUG FORM", "Debug Form called", deviceLocation)
         res.render("form", { title: "Formular", id: queryDeviceId, languageData: languageData, deviceLocation: deviceLocation });
         return;
     }
@@ -56,20 +57,25 @@ app.get('/', async (req, res) => {
     const isCodeVerified = deviceTwin.properties.desired.verificationCode === queryVerificationCode;
 
     if (!deviceTwin) {
+        await createEvent("ERROR Device", "Device not found error", deviceTwin.properties.desired.mzr)
         res.render("error", { title: "Error", message: "Device not found" });
     } else if (!isCodeVerified) {
+        await createEvent("ERROR Verification", "Verification Code not valid", deviceTwin.properties.desired.mzr)
         res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
     } else if (!queryLanguage) {
         appInsights.defaultClient.trackEvent({ name: "LANGUAGE", properties: { message: "loaded Language Screen", location: deviceTwin.properties.desired.mzr } });
+        await createEvent("LANGUAGE Page", "Language Page loaded", deviceTwin.properties.desired.mzr)
         res.render("home", { title: "Home" });
     } else {
         const languageData = await getLanguageData(queryLanguage);
         const deviceLocation = deviceTwin.properties.desired.mzr;
         const locationExists = (e) => e.id === deviceLocation;
         if (!languageData.mzrlocations.items.some(locationExists)) {
+            await createEvent("ERROR Location", "Location does not exist", deviceLocation)
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
             appInsights.defaultClient.trackEvent({ name: "FORM", properties: { message: "loaded Form Frontend", location: deviceLocation } });
+            await createEvent("FORM Page", "Form Page loaded", deviceLocation)
             setNewVerificationCode(deviceTwin);
             res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
         }
@@ -91,6 +97,21 @@ app.listen(port, () => {
     console.log(`This app is listening at http://localhost:${port}`)
     appInsights.setup().start()
 })
+
+async function createEvent(type, message, deviceId) {
+    const containerId = "events"
+    const container = database.container(containerId)
+    await dbContext.create(client, databaseId, containerId);
+    let newEvent = {
+        id: uuidv4(),
+        type: type,
+        deviceId: deviceId,
+        message: message
+    }
+    const { resource: createdItem } = await container.items.create(newEvent);
+    console.log(`\r\nCreated new Event: ${createdItem.id}\r\n`);
+    return
+}
 
 async function getDeviceTwin(registry, deviceId) {
     let response = await registry.getTwin(deviceId);
@@ -133,7 +154,7 @@ async function getPiStatusData() {
 
     // query to return all items
     const querySpec = {
-        query: "SELECT * from c"
+        query: "SELECT * FROM c WHERE c.location != 'not set' ORDER BY c.id ASC"
     };
 
     // read all items in the Items container
@@ -151,6 +172,7 @@ async function submitForm(req) {
     const newItem = req.body;
 
     appInsights.defaultClient.trackEvent({ name: "SUBMIT", properties: { message: "Form submitted", device: newItem.mzr } });
+    await createEvent("SUBMIT FORM", "Form Submitted", newItem.mzr)
 
     newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
 
