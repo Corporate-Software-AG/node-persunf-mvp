@@ -38,7 +38,6 @@ app.get('/', async (req, res) => {
     let queryLanguage = req.query.language;
     const queryDeviceId = req.query.deviceId;
     const queryVerificationCode = req.query.verificationCode;
-    appInsights.defaultClient.trackEvent({ name: "START", properties: { customProperty: "Request initiated" } });
 
     if (queryDeviceId == "DEBUG") {
         if (!queryLanguage) {
