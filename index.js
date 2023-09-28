@@ -54,26 +54,28 @@ app.get('/', async (req, res) => {
     const registry = Registry.fromConnectionString(iotConnectionString);
     const deviceTwin = await getDeviceTwin(registry, queryDeviceId);
     const isCodeVerified = deviceTwin.properties.desired.verificationCode === queryVerificationCode;
+    const deviceLocation = deviceTwin.properties.desired.mzr;
+    const deviceState = deviceTwin.properties.desired.state || "not set";
 
     if (!deviceTwin) {
-        await createEvent("ERROR Device", "Device not found error", deviceTwin.properties.desired.mzr)
+        await createEvent("ERROR Device", "Device not found error", deviceLocation)
         res.render("error", { title: "Error", message: "Device not found" });
     } else if (!isCodeVerified) {
-        await createEvent("ERROR Verification", "Verification Code not valid", deviceTwin.properties.desired.mzr)
+        await createEvent("ERROR Verification", "Verification Code not valid", deviceLocation)
         res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
     } else if (!queryLanguage) {
-        appInsights.defaultClient.trackEvent({ name: "LANGUAGE", properties: { message: "loaded Language Screen", location: deviceTwin.properties.desired.mzr } });
-        await createEvent("LANGUAGE Page", "Language Page loaded", deviceTwin.properties.desired.mzr)
+        appInsights.defaultClient.trackEvent({ name: "LANGUAGE", properties: { message: "loaded Language Screen", location: deviceLocation, state: deviceState } });
+        await createEvent("LANGUAGE Page", "Language Page loaded", deviceLocation)
         res.render("home", { title: "Home" });
     } else {
         const languageData = await getLanguageData(queryLanguage);
-        const deviceLocation = deviceTwin.properties.desired.mzr;
+
         const locationExists = (e) => e.id === deviceLocation;
         if (!languageData.mzrlocations.items.some(locationExists)) {
             await createEvent("ERROR Location", "Location does not exist", deviceLocation)
             res.render("error", { title: "Error", message: "invalid Device Location" });
         } else {
-            appInsights.defaultClient.trackEvent({ name: "FORM", properties: { message: "loaded Form Frontend", location: deviceLocation } });
+            appInsights.defaultClient.trackEvent({ name: "FORM", properties: { message: "loaded Form Frontend", location: deviceLocation, state: deviceState } });
             await createEvent("FORM Page", "Form Page loaded", deviceLocation)
             setNewVerificationCode(deviceTwin);
             res.render("form", { title: "Formular", id: queryVerificationCode, languageData: languageData, deviceLocation: deviceLocation });
@@ -97,7 +99,7 @@ app.listen(port, () => {
     appInsights.setup().start()
 })
 
-async function createEvent(type, message, deviceId) {
+async function createEvent(type, message, deviceId, state) {
     const containerId = "events"
     const container = database.container(containerId)
     await dbContext.create(client, databaseId, containerId);
@@ -105,7 +107,8 @@ async function createEvent(type, message, deviceId) {
         id: uuidv4(),
         type: type,
         deviceId: deviceId,
-        message: message
+        message: message,
+        state: state
     }
     const { resource: createdItem } = await container.items.create(newEvent);
     console.log(`\r\nCreated new Event: ${createdItem.id}\r\n`);
