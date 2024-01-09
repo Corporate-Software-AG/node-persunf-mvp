@@ -16,10 +16,6 @@ html
                 form(id='form' method='POST' action='/submit_form')
                     include subforms/common.pug
                     hr
-                    p
-                        i
-                            strong= languageData.labels.consult_doctor
-                    
                     div.mb-3
                         label.form-label(for='category') #{languageData.categories.name}:
                         select#category.form-select(name='category', onchange='categorySelected(this)')
