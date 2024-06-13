@@ -57,13 +57,13 @@ app.get('/', async (req, res) => {
     const deviceLocation = deviceTwin.properties.desired.mzr;
     const deviceState = deviceTwin.properties.desired.state || "not set";
 
-    if (!deviceTwin) {
+    /*if (!deviceTwin) {
         await createEvent("ERROR Device", "Device not found error", deviceLocation)
         res.render("error", { title: "Error", message: "Device not found" });
     } else if (!isCodeVerified) {
         await createEvent("ERROR Verification", "Verification Code not valid", deviceLocation)
         res.render("error", { title: "Error", message: "invalid verification code <br />Bitte scannen Sie den Code neu <br />Veuillez rescanner le code <br />Si prega di ripetere la scansione del codice" });
-    } else if (!queryLanguage) {
+    } else */ if (!queryLanguage) {
         appInsights.defaultClient.trackEvent({ name: "LANGUAGE", properties: { message: "loaded Language Screen", location: deviceLocation, state: deviceState } });
         await createEvent("LANGUAGE Page", "Language Page loaded", deviceLocation)
         res.render("home", { title: "Home" });
