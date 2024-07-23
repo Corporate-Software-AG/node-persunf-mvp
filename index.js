@@ -171,13 +171,19 @@ async function submitForm(req) {
     const container = database.container(containerId);
     await dbContext.create(client, databaseId, containerId);
 
+    console.log('Creating new item in container:\n', container.id);
+    console.log('Request Body:\n', req.body);
+
     const newItem = req.body;
 
     appInsights.defaultClient.trackEvent({ name: "SUBMIT", properties: { message: "Form submitted", device: newItem.mzr } });
     await createEvent("SUBMIT FORM", "Form Submitted", newItem.mzr)
-
-    newItem.incidentlocation = JSON.parse(newItem.incidentlocation);
-
+    try {
+        newItem.incidentlocation = JSON.stringify(newItem.incidentlocation);
+    }
+    catch (e) {
+        console.error(e);
+    }
     const { resource: createdItem } = await container.items.create(newItem);
 
     console.log(`\r\nCreated new item: ${createdItem.id}\r\n`);
