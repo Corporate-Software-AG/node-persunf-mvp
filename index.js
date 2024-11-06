@@ -4,6 +4,7 @@ const port = process.env.PORT || 8080;
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const appInsights = require('applicationinsights');
+const crypto = require('crypto'); // Import the crypto module
 
 const CosmosClient = require("@azure/cosmos").CosmosClient;
 const config = require("./config");
@@ -33,6 +34,19 @@ app.use('/favicon.ico', express.static('favicon.ico'));
 
 app.use(express.urlencoded({ extended: true }))
 
+const seed = "12345678901234567890123456789012"; // The encryption seed
+
+// Function to decrypt the timestamp
+function decrypt(encrypted, seed) {
+    const [ivHex, encryptedText] = encrypted.split(':'); // Split the IV and the encrypted text
+    const iv = Buffer.from(ivHex, 'hex'); // Convert the IV to a Buffer
+    const key = Buffer.from(seed, 'utf8'); // Convert the seed to a Buffer
+    const decipher = crypto.createDecipheriv('aes-256-cbc', key, iv);
+    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
+    decrypted += decipher.final('utf8');
+    return decrypted;
+}
+
 app.get('/', async (req, res) => {
 
     let queryLanguage = req.query.language;
@@ -53,7 +67,19 @@ app.get('/', async (req, res) => {
 
     const registry = Registry.fromConnectionString(iotConnectionString);
     const deviceTwin = await getDeviceTwin(registry, queryDeviceId);
-    const isCodeVerified = deviceTwin.properties.desired.verificationCode === queryVerificationCode;
+    try {
+        const decryptedTimestamp = decrypt(queryVerificationCode, seed);
+        console.log('Decrypted Timestamp:', decryptedTimestamp);
+        currentTimestamp = new Date().toISOString();
+        console.log('Current Timestamp:', currentTimestamp);
+        const diff = Math.abs(new Date(currentTimestamp) - new Date(decryptedTimestamp));
+        if (diff > 600000) {
+            console.log('Verification Code expired');
+            //res.render("error", { title: "Error", message: "Verification Code expired" });
+            //return;
+        }
+    } catch (e) {
+    }
     const deviceLocation = deviceTwin.properties.desired.mzr;
     const deviceState = deviceTwin.properties.desired.state || "not set";
 
